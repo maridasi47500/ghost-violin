@@ -25,3 +25,13 @@
   - Output saved to `violin_annotated.ly`.
 
 # ghost-violin
+- 🛠️ Instructions to Use:
+
+ -    there's this script  annotate_violin.sh.
+
+ -   Make it executable:
+- chmod +x annotate_violin.sh
+
+ -    bash
+- ./annotate_violin.sh
+
