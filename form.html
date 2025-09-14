@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head><title>Violin Fingering to LilyPond</title></head>
+<body>
+  <h2>🎻 Select Fingering</h2>
+  <form method="POST">
+    <label>String:</label>
+    <select name="string">
+      <option>G</option><option>D</option><option>A</option><option>E</option>
+    </select><br>
+
+    <label>Position:</label>
+    <select name="position">
+      {% for pos in ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'] %}
+        <option>{{ pos }}</option>
+      {% endfor %}
+    </select><br>
+
+    <label>Finger:</label>
+    <select name="finger">
+      {% for f in ['0','1','2','3','4'] %}
+        <option>{{ f }}</option>
+      {% endfor %}
+    </select><br>
+
+    <label>Alteration:</label>
+    <select name="alteration">
+      <option value="">None</option>
+      <option value="diese">♯ (diese)</option>
+      <option value="bemol">♭ (bemol)</option>
+    </select><br><br>
+
+    <button type="submit">Generate LilyPond Note</button>
+  </form>
+
+  {% if result %}
+    <h3>{{ result }}</h3>
+  {% endif %}
+</body>
+</html>
+
