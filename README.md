@@ -35,3 +35,6 @@
  -    bash
 - ./annotate_violin.sh
 
+python3 -m venv ~/path/to/venv.
+ - source ~/path/to/venv/bin/activate.
+

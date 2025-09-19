@@ -58,7 +58,6 @@ class ViolinFingeringMap:
 
     def build_fingering_map(self):
         for string in ['G', 'D', 'A', 'E']:
-            print("string",string)
             note_index = self.note_names.index(self.starting_notes[string]) + 1
             position_index = 0
             position = self.positions[position_index]
@@ -78,7 +77,6 @@ class ViolinFingeringMap:
                 mynumber = 0
 
                 for note in block:
-                    print(note,"note")
                     mynumber += 1
                     if notes_assigned >= 27 or note_index >= len(self.note_names):
                         break
@@ -95,44 +93,16 @@ class ViolinFingeringMap:
                         "position": position,
                         "finger": finger
                     }
-                    print(finger)
 
-                    if note_index + mynumber + 1 < len(self.note_names):
-                        next_note = self.note_names[note_index + mynumber + 1]
-                        prev_note = self.note_names[note_index + mynumber - 1] if mynumber > 1 else None
-                        
-                    
-                        if next_note in self.current_scale:
-                            print("prochaine ntoe dans la gamme")
-                            if finger == 1 and (prev_note and prev_note in current_scale):
-                                finger = str(min(int(finger) + 1, 4))
-
-
-
-
-                            elif finger == 1 and note not in current_scale:
-                                print("NE FAIS RIEN")
-
-
-
-                            else:
-                                finger = str(min(int(finger) + 1, 4))
-
+                    if note_index + mynumber + 1 < len(self.note_names) and finger > 1:
+                        next_note = self.note_names[mynumber + note_index + 1]
+                        if next_note in self.current_scale and mynumber > 1:
+                            finger = str(min(int(finger) + 1, 4))
 
                 if len(block) > 1 and block[1] in self.current_scale:
-                    print("prochaine note, et deuxieme note du bloque dans la gamme")
-                    if position == "I":
-                        print("poremiere position")
-                        print(note_index > self.note_names.index(self.starting_notes[string]) + 3, "troisieme note de la corde au moins")
-                        print("note actuelle dans la gamme", block[0] in self.current_scale)
-                        if note_index > self.note_names.index(self.starting_notes[string]) + 2 or (block[0] in self.current_scale):
-                            position_index += 1
-                    else:
-                        position_index += 1
-                    
+                    position_index += 1
                     if position_index < len(self.positions):
                         position = self.positions[position_index]
-                        print("position", position)
                     finger = '1'
                     firstnotepassee = True
 
