@@ -79,7 +79,7 @@ class ViolinFingeringMap:
 
                 for note in block:
                     print(note,"note")
-                    mynumber += 1
+
                     if notes_assigned >= 27 or note_index >= len(self.note_names):
                         break
 
@@ -95,7 +95,7 @@ class ViolinFingeringMap:
                         "position": position,
                         "finger": finger
                     }
-                    print(finger)
+                    print(string, finger)
 
                     if note_index + mynumber + 1 < len(self.note_names):
                         next_note = self.note_names[note_index + mynumber + 1]
@@ -112,11 +112,12 @@ class ViolinFingeringMap:
 
                             else:
                                 finger = str(min(int(finger) + 1, 4))
+                    mynumber += 1
 
 
                 if len(block) > 1 and block[1] in self.current_scale:
                     print("prochaine note, et deuxieme note du bloque dans la gamme")
-                    if position == "I" and note_index > self.note_names.index(self.starting_notes[string]) + 1 and (block[0] not in self.current_scale):
+                    if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale):
                         print("do nothgiun")
                     else:
                         position_index += 1
@@ -130,6 +131,8 @@ class ViolinFingeringMap:
                 note_index += 1
                 notes_assigned += 1
 
+    def get_the_fingering_map(self):
+        return self.fingering_map
     def get_unique_fingerings(self):
         return [dict(t) for t in {tuple(d.items()) for d in self.other_fingering_map}]
 
