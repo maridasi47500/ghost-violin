@@ -5,8 +5,12 @@ app = Flask(__name__)
 def to_lilypond(note): 
      return note.replace("'''", "'''").replace("''", "''").replace("'", "'")
 # Your fingering map here (import or define)
-fingering_map_violin = ViolinFingeringMap(tonic='g', scale_type='major', octaves=3)
+violin_map = ViolinFingeringMap(tonic='g', scale_type='major', octaves=3)
+violin_map.build_fingering_map()
+fingering_map_violin = violin_map.get_unique_fingerings()
 
+
+print(fingering_map_violin)
 
 
 
@@ -30,7 +34,7 @@ def index():
             base_note = None
 
         # Apply alteration
-        result=""
+        result="sur la string de "+string+ " en "+position+"e position avec le "+finger+"e doigt, je pourrais faire les notes:"
         number=1
         for base_note in base_notes:
             number+=1

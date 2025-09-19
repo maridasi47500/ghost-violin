@@ -74,7 +74,7 @@ class ViolinFingeringMap:
             })
 
             while note_index < len(self.note_names) and notes_assigned < 27:
-                block = self.note_names[note_index:note_index + 7]
+                block = self.note_names[note_index:note_index + 8]
                 mynumber = 0
 
                 for note in block:
@@ -104,13 +104,8 @@ class ViolinFingeringMap:
                     
                         if next_note in self.current_scale:
                             print("prochaine ntoe dans la gamme")
-                            if finger == 1 and (prev_note and prev_note in current_scale):
-                                finger = str(min(int(finger) + 1, 4))
 
-
-
-
-                            elif finger == 1 and note not in current_scale:
+                            if position == "I" and finger == 1 and note not in self.current_scale:
                                 print("NE FAIS RIEN")
 
 
@@ -121,12 +116,8 @@ class ViolinFingeringMap:
 
                 if len(block) > 1 and block[1] in self.current_scale:
                     print("prochaine note, et deuxieme note du bloque dans la gamme")
-                    if position == "I":
-                        print("poremiere position")
-                        print(note_index > self.note_names.index(self.starting_notes[string]) + 3, "troisieme note de la corde au moins")
-                        print("note actuelle dans la gamme", block[0] in self.current_scale)
-                        if note_index > self.note_names.index(self.starting_notes[string]) + 2 or (block[0] in self.current_scale):
-                            position_index += 1
+                    if position == "I" and note_index > self.note_names.index(self.starting_notes[string]) + 1 and (block[0] not in self.current_scale):
+                        print("do nothgiun")
                     else:
                         position_index += 1
                     
@@ -145,7 +136,7 @@ class ViolinFingeringMap:
     def display_sample(self, count=20):
         print("🎻 Fingering Map (sample):")
         for note in list(self.get_unique_fingerings())[:count]:
-            print(f"{note["position"]}: {note["finger"]}, {note["note"]}: {note["string"]}")
+            print(f"{note["string"]}: {note["position"]}, {note["finger"]}: {note["note"]}")
 
 violin_map = ViolinFingeringMap(tonic='g', scale_type='major', octaves=3)
 violin_map.build_fingering_map()
