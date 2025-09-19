@@ -47,7 +47,7 @@ def index():
             #lilypond_note = base_note.replace("'''", "'''").replace("''", "''").replace("'", "'")
             result += f"LilyPond note n°{number}: {base_note}<br>"
 
-    return render_template('form.html', result=result)
+    return render_template('form.html', result=result,tonalite=violin_map.get_my_scale_name())
 
 if __name__ == '__main__':
     app.run()

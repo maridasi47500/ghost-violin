@@ -3,6 +3,10 @@
 <head><title>Violin Fingering to LilyPond</title></head>
 <body>
   <h2>🎻 Select Fingering</h2>
+  {% if tonalite %}
+    <p>je suis en {{ tonalite }}</p>
+  {% endif %}
+</p>
   <form method="POST">
     <label>String:</label>
     <select name="string">

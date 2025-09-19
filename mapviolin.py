@@ -29,6 +29,8 @@ class ViolinFingeringMap:
         self.fingering_map = {}
         self.other_fingering_map = []
         self.current_scale = self.generate_scale(tonic, scale_type, octaves)
+    def get_my_scale_name(self):
+        return self.tonic+" "+self.scale_type
 
     def normalize(self, note):
         match = re.match(r"([a-g][ei]s|[a-g]es|[a-g])([',]*)$", note)
