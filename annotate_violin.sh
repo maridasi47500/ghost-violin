@@ -4,7 +4,7 @@
 
 # Step 1: Add alternating bowing marks
 echo "➤ Adding bowing marks to pavanehey.ly..."
-python3 slurdownupbow.py 0
+python3 slurdownupbowmer.py 0
 echo "✅ Bowing marks added."
 
 # Step 2: Convert to absolute pitch using Frescobaldi
