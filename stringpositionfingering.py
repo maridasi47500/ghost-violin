@@ -56,7 +56,7 @@ def replace_placeholders(match):
     return f'{note}{duration} ^{data["finger"]} _"{data["string"]}" _"{data["position"]}"'
 
 # Match notes with duration (e.g., g''8, a'4)
-pattern = r"\b([a-g]'+)(\d+)\b"
+pattern = r"\b([a-g]'+)(\d+)(.)?\b"
 
 # Apply replacements
 annotated_score = re.sub(pattern, replace_placeholders, score)

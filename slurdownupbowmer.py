@@ -5,8 +5,8 @@ with open("hey-la-mer-partition.ly", "r", encoding="utf-8") as file:
     original_score = file.read()
 
 # Define bowings and index
-bowings = ["^\\downbow", "^\\upbow"]
-bow_index = [1]
+bowings = ["\\downbow ", "\\upbow "]
+bow_index = [0]
 
 # Define note names
 note_names = [
@@ -28,7 +28,8 @@ def apply_bowing(score):
     pos = 0
     slur_pattern = re.compile(r"(\\slurUp\s*\()([^\)]+)\)", re.DOTALL)
     note_pattern = '|'.join(sorted(note_names, key=len, reverse=True))
-    note_regex = rf"(?<!\w)({note_pattern})'*[0-9]+(?!\w)"
+
+    note_regex = rf"(?<!\w)({note_pattern})'*[0-9]+(.)?(\))?(?!\w)"
 
     for match in slur_pattern.finditer(score):
         start, end = match.span()
