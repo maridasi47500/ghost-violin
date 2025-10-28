@@ -1,6 +1,8 @@
 import re
 
 class ViolinFingeringMap:
+    chromatic = ['c', 'cis', 'd', 'ees', 'e', 'f', 'fis', 'g', 'ais', 'a', 'bes', 'b']
+    octave_marks = ["", "'", "''", "'''","''''","'''''","''''''"]
     note_names = [
         'g', 'gis', 'a', 'ais', 'b', 
         'c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b',
@@ -16,7 +18,7 @@ class ViolinFingeringMap:
 
     starting_notes = {
         'G': 'g',
-        'D': 'd',
+        'D': "d'",
         'A': "a'",
         'E': "e''"
     }
@@ -24,6 +26,25 @@ class ViolinFingeringMap:
     positions = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV']
 
     def __init__(self, tonic='g', scale_type='major', octaves=3):
+        octave=0
+        idx=self.chromatic.index("g")
+        scale_notes=[]
+        for numberoctave in range(octaves):
+            for numbernote in range(len(self.chromatic)):
+                print(octave,idx)
+                if "c" in self.chromatic[idx % 12] and "cis" not in self.chromatic[idx % 12]:
+                    octave += 1
+                note = self.chromatic[idx % 12] + self.octave_marks[octave]
+
+
+                #if "g" in note:
+                #    break
+                scale_notes.append(note)
+
+                print(scale_notes)
+                idx += 1
+        self.note_names=scale_notes
+        print(scale_notes)
         self.tonic = tonic
         self.scale_type = scale_type
         self.octaves = octaves
@@ -91,17 +112,16 @@ class ViolinFingeringMap:
         for numberoctave in range(octaves):
             for step in steps:
 
-                if "c" in chromatic[idx % 12]:
+
+                if "c" in chromatic[idx % 12] and "cis" not in chromatic[idx % 12]:
                     octave += 1
                 note = chromatic[idx % 12] + octave_marks[octave]
 
-                #if "g" in note:
-                #    break
                 scale_notes.append(note)
+
                 print(scale_notes)
                 idx += step
         print(scale_notes)
-        self.note_names=scale_notes
 
 
         return set(scale_notes)
@@ -109,16 +129,21 @@ class ViolinFingeringMap:
     def build_fingering_map(self):
         for string in ['G', 'D', 'A', 'E']:
             print("string",string)
-            note_index = self.note_names.index(self.starting_notes[string]) + 1
+            try:
+                note_index = self.note_names.index(self.starting_notes[string]) + 1
+            except:
+                note_index = self.note_names.index(self.starting_notes[string]) + 1
             position_index = 0
             position = self.positions[position_index]
             finger = '1'
             firstnotepassee = False
             notes_assigned = 0
-            if string == "G" or string == "D":
+            if string == "G":
                 mynote=string.lower()
-            elif string == "A" or string == "E":
+            if string == "D" or string == "A":
                 mynote=string.lower()+"'"
+            elif string == "E":
+                mynote=string.lower()+"''"
             self.fingering_map[mynote] = {
                 "string": string,
                 "position": "I",
@@ -132,12 +157,20 @@ class ViolinFingeringMap:
                 "finger": "0"
             })
 
+
+            fourthfinger=0
             while note_index < len(self.note_names) and notes_assigned < 27:
+
                 block = self.note_names[note_index:note_index + 8]
                 mynumber = 0
+                if notes_assigned >= 27 or note_index >= len(self.note_names) or fourthfinger > 2:
+                    break
 
                 for note in block:
                     #print(note,"note")
+                    if finger==4:
+                       fourthfinger+=1
+
 
                     if notes_assigned >= 27 or note_index >= len(self.note_names):
                         break
@@ -154,7 +187,7 @@ class ViolinFingeringMap:
                         "position": position,
                         "finger": finger
                     }
-                    #print(string, finger)
+                    print(string, finger, note)
 
                     if note_index + mynumber + 1 < len(self.note_names):
                         next_note = self.note_names[note_index + mynumber + 1]
