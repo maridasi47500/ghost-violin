@@ -149,6 +149,7 @@ class ViolinFingeringMap:
                 "position": "I",
                 "finger": "0"
             }
+            fourthfinger=0
 
             self.other_fingering_map.append({
                 "note": self.starting_notes[string],
@@ -158,18 +159,29 @@ class ViolinFingeringMap:
             })
 
 
-            fourthfinger=0
+
+            newblock=0
+            mynumber=0
             while note_index < len(self.note_names) and notes_assigned < 27:
+                #if fourthfinger > 1 and mynumber >= 8 and newblock>7:
+                #   break
 
                 block = self.note_names[note_index:note_index + 8]
+                newblock+=1
+
                 mynumber = 0
-                if notes_assigned >= 27 or note_index >= len(self.note_names) or fourthfinger > 2:
+
+
+                if notes_assigned >= 27 or note_index >= len(self.note_names):
                     break
 
                 for note in block:
+                    print(newblock,mynumber,fourthfinger)
+                    if finger=="4" and mynumber == 0:
+                        break
                     #print(note,"note")
-                    if finger==4:
-                       fourthfinger+=1
+                    print(mynumber)
+
 
 
                     if notes_assigned >= 27 or note_index >= len(self.note_names):
@@ -187,7 +199,15 @@ class ViolinFingeringMap:
                         "position": position,
                         "finger": finger
                     }
-                    print(string, finger, note)
+                    #print(string, finger, note,fourthfinger)
+                    if finger=="4" and position == "III":
+                       print("ERTYUIKJHVFYUI")
+                       print(string, finger, note,fourthfinger)
+                    if finger=="4":
+                       fourthfinger+=1
+                    if fourthfinger > 1:
+                       break
+
 
                     if note_index + mynumber + 1 < len(self.note_names):
                         next_note = self.note_names[note_index + mynumber + 1]
