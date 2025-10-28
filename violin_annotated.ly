@@ -45,9 +45,9 @@ violin = {
   % Mesure 4 — clef treble
   {
     \tuplet 3/2 { \slurUp (bes'8 ^1 _"A" _"I" \downbow  ges'8. bes'16 ^1 _"A" _"I") }
-    \slurUp (des''4~ \upbow 
-    \tuplet 3/2 { des''8 es''8. c''16 ^1 _"A" _"II") }
-    \tuplet 3/2 { des''8 \downbow  bes'8 ^1 _"A" _"I" \upbow  c''8 ^1 _"A" _"II" \downbow  }
+    \slurUp (des''4 ^1 _"A" _"II"~ \upbow 
+    \tuplet 3/2 { des''8 ^1 _"A" _"II" es''8. c''16 ^1 _"A" _"II") }
+    \tuplet 3/2 { des''8 ^1 _"A" _"II" \downbow  bes'8 ^1 _"A" _"I" \upbow  c''8 ^1 _"A" _"II" \downbow  }
     \tuplet 3/2 { \slurUp (as'8 \upbow  bes'8. ^1 _"A" _"I" ges'16) }
     \tuplet 3/2 { as'8 \downbow  f'8 ^1 _"D" _"II" \upbow  ges'8 \downbow  }
   }

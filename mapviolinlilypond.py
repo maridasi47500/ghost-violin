@@ -1,7 +1,7 @@
 import re
 
 class ViolinFingeringMap:
-    chromatic = ['c', 'cis', 'd', 'ees', 'e', 'f', 'fis', 'g', 'ais', 'a', 'bes', 'b']
+    chromatic = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
     octave_marks = ["", "'", "''", "'''","''''","'''''","''''''"]
     note_names = [
         'g', 'gis', 'a', 'ais', 'b', 
@@ -65,7 +65,7 @@ class ViolinFingeringMap:
         return note.replace("'''", "").replace("''", "").replace("'", "")
 
     def generate_scale(self, tonic, scale_type='major', octaves=3):
-        chromatic = ['c', 'cis', 'd', 'ees', 'e', 'f', 'fis', 'g', 'ais', 'a', 'bes', 'b']
+        chromatic = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
         violinfirst="g"
 
         steps = [2, 2, 1, 2, 2, 2, 1] if scale_type == 'major' else [2, 1, 2, 2, 1, 2, 2]
@@ -73,7 +73,7 @@ class ViolinFingeringMap:
         try:
             start_index = chromatic.index(tonic) #g string, 
         except:
-            chromatic = ['c', 'des', 'd', 'dis', 'e', 'f', 'ges', 'g', 'gis', 'a', 'ais', 'b']
+            chromatic = ['c', 'cis', 'd', 'dis', 'e', 'f', 'ges', 'g', 'gis', 'a', 'ais', 'b']
             start_index = chromatic.index(tonic)
         scale_notes = []
         octave_marks = ["", "'", "''", "'''"]
