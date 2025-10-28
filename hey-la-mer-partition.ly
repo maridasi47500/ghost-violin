@@ -11,13 +11,16 @@ global = {
   \time 4/4
 }
 
-violin = \relative c' {
+violin = {
+  
   \global
+  \relative c' {
+  
 
   % Mesure 1
   \slurUp (bes16 c8.)
   \slurUp (g'2. g2.) r4
-
+  }
   % Mesure 2
   \relative c' {
     \slurUp (bes16 c8.)
@@ -26,8 +29,8 @@ violin = \relative c' {
   }
 
   % Mesure 3
-  \relative c' {
-    \tuplet 3/2 { bes8' f8 g8 }
+  \relative c'' {
+    \tuplet 3/2 { bes8 f8 g8 }
     \tuplet 3/2 { d8 ees8. bes16 }
     c4~ 
     \tuplet 3/2 { c8 \slurUp (a8 c8 }
@@ -40,7 +43,7 @@ violin = \relative c' {
   }
 
   % Mesure 4 — clef treble
-  \relative c' \clef treble {
+  \relative c''  {
     \tuplet 3/2 { \slurUp (bes8 ges8. bes16) }
     \slurUp (des4~
     \tuplet 3/2 { des8 ees8. c16) }

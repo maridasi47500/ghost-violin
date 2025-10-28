@@ -2,7 +2,7 @@ import re
 
 class ViolinFingeringMap:
     note_names = [
-        'g', 'gis', 'a', 'ais', 'b',
+        'g', 'gis', 'a', 'ais', 'b', 
         'c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b',
         "c'", "cis'", "d'", "dis'", "e'", "f'", "fis'", "g'", "gis'", "a'", "ais'", "b'",
         "c''", "cis''", "d''", "dis''", "e''", "f''", "fis''", "g''", "gis''", "a''", "ais''", "b''",
@@ -44,13 +44,15 @@ class ViolinFingeringMap:
         return note.replace("'''", "").replace("''", "").replace("'", "")
 
     def generate_scale(self, tonic, scale_type='major', octaves=3):
-        chromatic = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
+        chromatic = ['c', 'cis', 'd', 'ees', 'e', 'f', 'fis', 'g', 'ais', 'a', 'bes', 'b']
+        violinfirst="g"
 
         steps = [2, 2, 1, 2, 2, 2, 1] if scale_type == 'major' else [2, 1, 2, 2, 1, 2, 2]
+        violin_start = chromatic.index(violinfirst) #g string, 
         try:
             start_index = chromatic.index(tonic) #g string, 
         except:
-            chromatic = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
+            chromatic = ['c', 'des', 'd', 'dis', 'e', 'f', 'ges', 'g', 'gis', 'a', 'ais', 'b']
             start_index = chromatic.index(tonic)
         scale_notes = []
         octave_marks = ["", "'", "''", "'''"]
@@ -58,12 +60,49 @@ class ViolinFingeringMap:
         #increment octave marks au "g" 
         #mapviolin for lilypod
 
-        for octave in range(octaves+1):
-            idx = start_index
-            for step in [0] + steps:
+        #for octave in range(octaves):
+        #    idx = start_index
+        #    for step in [0] + steps:
+        #        note = chromatic[idx % 12] + octave_marks[octave]
+        #        scale_notes.append(note)
+        #        idx += step
+
+        octave=0
+        idx = start_index
+        myid = start_index
+        paspremier=False
+        if violin_start != myid:
+
+            for step in  list(reversed(list(steps))):
+                print(scale_notes)
+                note = chromatic[myid % 12]
+                if chromatic.index("g") > chromatic.index(note):
+                    break
+                if paspremier is not False:
+                    scale_notes.insert(0,note)
+                myid -= step
+
+                if myid > len(chromatic):
+                    myid=0
+                paspremier=True
+
+        #for octave in range(octaves):
+        #for step in [0] + steps:
+        for numberoctave in range(octaves):
+            for step in steps:
+
+                if "c" in chromatic[idx % 12]:
+                    octave += 1
                 note = chromatic[idx % 12] + octave_marks[octave]
+
+                #if "g" in note:
+                #    break
                 scale_notes.append(note)
+                print(scale_notes)
                 idx += step
+        print(scale_notes)
+        self.note_names=scale_notes
+
 
         return set(scale_notes)
 
@@ -98,7 +137,7 @@ class ViolinFingeringMap:
                 mynumber = 0
 
                 for note in block:
-                    print(note,"note")
+                    #print(note,"note")
 
                     if notes_assigned >= 27 or note_index >= len(self.note_names):
                         break
@@ -115,7 +154,7 @@ class ViolinFingeringMap:
                         "position": position,
                         "finger": finger
                     }
-                    print(string, finger)
+                    #print(string, finger)
 
                     if note_index + mynumber + 1 < len(self.note_names):
                         next_note = self.note_names[note_index + mynumber + 1]
@@ -123,7 +162,7 @@ class ViolinFingeringMap:
                         
                     
                         if next_note in self.current_scale:
-                            print("prochaine ntoe dans la gamme")
+                            #print("prochaine ntoe dans la gamme")
 
                             if position == "I" and finger == 1 and note not in self.current_scale:
                                 print("NE FAIS RIEN")
@@ -136,7 +175,7 @@ class ViolinFingeringMap:
 
 
                 if len(block) > 1 and block[1] in self.current_scale:
-                    print("prochaine note, et deuxieme note du bloque dans la gamme")
+                    #print("prochaine note, et deuxieme note du bloque dans la gamme")
                     if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale):
                         print("do nothgiun")
                     else:

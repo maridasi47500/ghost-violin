@@ -37,6 +37,9 @@
 
 python3 -m venv ~/path/to/venv.
  - source ~/path/to/venv/bin/activate.
+### why aes8 becomes as8 and a8 becomes a,8
+ - aes is a falat and as is ab , lilypond normalize aes to as
+- in relative mode, a8 is a lower octave (A3) when converted, to absolute, it becomes, a,8
 
 ![alt text](music1.png)
 ![alt text](music.png)

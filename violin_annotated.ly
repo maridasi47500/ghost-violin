@@ -12,48 +12,51 @@ global = {
 }
 
 violin = {
+  
   \global
+  {
+  
 
   % Mesure 1
   \slurUp (bes16 \downbow  c'8.)
-  \slurUp (g'2. ^0 _"G" _"I" \upbow  g'2. ^0 _"G" _"I") r4
-
+  \slurUp (g'2. ^1 _"D" _"III" \upbow  g'2. ^1 _"D" _"III") r4
+  }
   % Mesure 2
   {
     \slurUp (bes16 \downbow  c'8.)
-    g'2 ^0 _"G" _"I" \upbow 
-    \tuplet 3/2 { \slurUp (bes'8 \downbow  c''8. g'16 ^0 _"G" _"I") }
+    g'2 ^1 _"D" _"III" \upbow 
+    \tuplet 3/2 { \slurUp (bes'8 \downbow  c''8. g'16 ^1 _"D" _"III") }
   }
 
   % Mesure 3
   {
-    \tuplet 3/2 { bes8' \upbow  f8 \downbow  g8 ^0 _"G" _"I"  \upbow }
-    \tuplet 3/2 { d8 \downbow  es8. \upbow  bes,16  \downbow }
-    c4~ \upbow  
-    \tuplet 3/2 { c8  \downbow \slurUp (a,8 \upbow  c8 }
-    \tuplet 3/2 { es8) \slurUp (c8. \downbow  es16 }
-    \tuplet 3/2 { g8 ^0 _"G" _"I") \slurUp (es8 \upbow  g8 ^0 _"G" _"I") }
-    \tuplet 3/2 { a8 ^1 _"G" _"I" \downbow  g8. ^0 _"G" _"I" \upbow  \slurUp (a16 ^1 _"G" _"I"  \downbow }
-    \tuplet 3/2 { g8 ^0 _"G" _"I") \slurUp (a8 ^1 _"G" _"I" \upbow  g8 ^0 _"G" _"I") }
-    \tuplet 3/2 { a8 ^1 _"G" _"I" \downbow  g8. ^0 _"G" _"I" \upbow  \slurUp (a16 ^1 _"G" _"I"  \downbow }
-    \tuplet 3/2 { g8 ^0 _"G" _"I") \slurUp (a8 ^1 _"G" _"I" \upbow  g8 ^0 _"G" _"I") }
+    \tuplet 3/2 { bes'8 \upbow  f'8 ^1 _"D" _"II" \downbow  g'8 ^1 _"D" _"III" \upbow  }
+    \tuplet 3/2 { d'8 ^0 _"D" _"I" \downbow  es'8. \upbow  bes16 \downbow  }
+    c'4~ \upbow  
+    \tuplet 3/2 { c'8 \downbow  \slurUp (a8 ^1 _"D" _"IV" \upbow  c'8 }
+    \tuplet 3/2 { es'8) \slurUp (c'8. \downbow  es'16 }
+    \tuplet 3/2 { g'8 ^1 _"D" _"III") \slurUp (es'8 \upbow  g'8 ^1 _"D" _"III") }
+    \tuplet 3/2 { a'8 ^1 _"D" _"IV" \downbow  g'8. ^1 _"D" _"III" \upbow  \slurUp (a'16 ^1 _"D" _"IV" \downbow  }
+    \tuplet 3/2 { g'8 ^1 _"D" _"III") \slurUp (a'8 ^1 _"D" _"IV" \upbow  g'8 ^1 _"D" _"III") }
+    \tuplet 3/2 { a'8 ^1 _"D" _"IV" \downbow  g'8. ^1 _"D" _"III" \upbow  \slurUp (a'16 ^1 _"D" _"IV" \downbow  }
+    \tuplet 3/2 { g'8 ^1 _"D" _"III") \slurUp (a'8 ^1 _"D" _"IV" \upbow  g'8 ^1 _"D" _"III") }
   }
 
   % Mesure 4 — clef treble
-  \clef treble {
+  {
     \tuplet 3/2 { \slurUp (bes'8 \downbow  ges'8. bes'16) }
     \slurUp (des''4~ \upbow 
     \tuplet 3/2 { des''8 es''8. c''16) }
-    \tuplet 3/2 { des''8 \downbow  bes'8 \upbow  c''8  \downbow }
+    \tuplet 3/2 { des''8 \downbow  bes'8 \upbow  c''8 \downbow  }
     \tuplet 3/2 { \slurUp (as'8 \upbow  bes'8. ges'16) }
-    \tuplet 3/2 { as'8 \downbow  f'8 \upbow  ges'8  \downbow }
+    \tuplet 3/2 { as'8 \downbow  f'8 ^1 _"D" _"II" \upbow  ges'8 \downbow  }
   }
 
   % Mesure 5
   {
-    \tuplet 3/2 { \slurUp (f'8 \upbow  d'8. f'16) }
-    \tuplet 3/2 { d'8  \downbow \slurUp (f'8 \upbow  d'8~) }
-    d'8 r8 r4
+    \tuplet 3/2 { \slurUp (f'8 ^1 _"D" _"II" \upbow  d'8. ^0 _"D" _"I" f'16 ^1 _"D" _"II") }
+    \tuplet 3/2 { d'8 ^0 _"D" _"I" \downbow  \slurUp (f'8 ^1 _"D" _"II" \upbow  d'8 ^0 _"D" _"I"~) }
+    d'8 ^0 _"D" _"I" r8 r4
     
   }
 }

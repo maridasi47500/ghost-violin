@@ -40,6 +40,8 @@ fingering_map = {
     "d'''":    {"string": "E", "finger": "4", "position": "III"},
     "e'''":    {"string": "E", "finger": "1", "position": "V"},
 }
+fingering_map={'g': {'string': 'D', 'position': 'III', 'finger': '1'}, 'gis': {'string': 'D', 'position': 'III', 'finger': '4'}, 'a': {'string': 'D', 'position': 'IV', 'finger': '1'}, 'ais': {'string': 'D', 'position': 'IV', 'finger': '4'}, 'b': {'string': 'D', 'position': 'IV', 'finger': '4'}, "c'": {'string': 'D', 'position': 'V', 'finger': '1'}, "cis'": {'string': 'D', 'position': 'V', 'finger': '4'}, "d'": {'string': 'D', 'position': 'VI', 'finger': '1'}, "dis'": {'string': 'D', 'position': 'VI', 'finger': '4'}, "e'": {'string': 'E', 'position': 'I', 'finger': '0'}, "f'": {'string': 'D', 'position': 'VII', 'finger': '1'}, "fis'": {'string': 'D', 'position': 'VII', 'finger': '4'}, "g'": {'string': 'D', 'position': 'VIII', 'finger': '1'}, "gis'": {'string': 'D', 'position': 'VIII', 'finger': '4'}, "a'": {'string': 'A', 'position': 'I', 'finger': '0'}, "ais'": {'string': 'A', 'position': 'I', 'finger': '1'}, "b'": {'string': 'A', 'position': 'I', 'finger': '4'}, "c''": {'string': 'A', 'position': 'II', 'finger': '1'}, "cis''": {'string': 'A', 'position': 'II', 'finger': '4'}, "d''": {'string': 'A', 'position': 'III', 'finger': '1'}, "dis''": {'string': 'A', 'position': 'III', 'finger': '4'}, "e''": {'string': 'A', 'position': 'III', 'finger': '4'}, "f''": {'string': 'E', 'position': 'I', 'finger': '1'}, "fis''": {'string': 'E', 'position': 'I', 'finger': '3'}, "g''": {'string': 'E', 'position': 'II', 'finger': '1'}, "gis''": {'string': 'E', 'position': 'II', 'finger': '2'}, "a''": {'string': 'E', 'position': 'III', 'finger': '1'}, "ais''": {'string': 'E', 'position': 'III', 'finger': '1'}, "b''": {'string': 'E', 'position': 'III', 'finger': '1'}, "c'''": {'string': 'E', 'position': 'III', 'finger': '1'}, "cis'''": {'string': 'E', 'position': 'III', 'finger': '1'}, "d'''": {'string': 'E', 'position': 'III', 'finger': '1'}, "dis'''": {'string': 'E', 'position': 'III', 'finger': '1'}, "e'''": {'string': 'E', 'position': 'III', 'finger': '1'}, "f'''": {'string': 'E', 'position': 'III', 'finger': '1'}, 'd': {'string': 'D', 'position': 'I', 'finger': '0'}, 'dis': {'string': 'D', 'position': 'I', 'finger': '1'}, 'e': {'string': 'D', 'position': 'I', 'finger': '4'}, 'f': {'string': 'D', 'position': 'II', 'finger': '1'}, 'fis': {'string': 'D', 'position': 'II', 'finger': '4'}}
+
 
 # Load the LilyPond fragment
 with open("pavanehey_absolute.ly", "r", encoding="utf-8") as file:
@@ -50,17 +52,22 @@ def replace_placeholders(match):
     print(match)
     note = match.group(1)
     try:
-        height = match.group(2)
+        hey = match.group(2)
+    except:
+        hey = ""
+    try:
+        height = match.group(3)
     except:
         height = ""
     try:
-        duration = match.group(3)
+        duration = match.group(4)
     except:
         duration = ""
+
     try:
-        hey = match.group(4)
+        dot = match.group(5)
     except:
-        hey = ""
+        dot = ""
     if note is None:
         note = ""
     if height is None:
@@ -69,24 +76,32 @@ def replace_placeholders(match):
         duration = ""
     if hey is None:
         hey = ""
-    #print(note,height,duration,hey)
+    if dot is None:
+        dot = ""
+    #print(note,height,duration,hey,dot)
     key = note
     if key not in fingering_map:
-        return f"{note}{height}{duration}{hey}"  # leave unannotated if not found
+        print(f"{note}{hey}{height}{duration}{dot}")
+        return f"{note}{height}{duration}{dot}"  # leave unannotated if not found
     data = fingering_map[key]
-    return f'{note}{height}{duration}{hey} ^{data["finger"]} _"{data["string"]}" _"{data["position"]}"'
+    print(f'{note}{hey}{height}{duration}{dot} ^{data["finger"]} _"{data["string"]}" _"{data["position"]}"')
+    return f'{note}{height}{duration}{dot} ^{data["finger"]} _"{data["string"]}" _"{data["position"]}"'
 
 # Match notes with duration (e.g., g''8, a'4)
 ####pattern = r"\b([a-g]'+)(\d+)(.)?\b"
 note_names = [
     'aes', 'bes', 'ces', 'des', 'ees', 'fes', 'ges',
     'ais', 'bis', 'cis', 'dis', 'eis', 'fis', 'gis',
+    'as', 'bs', 'cs', 'ds', 'es', 'fs', 'gs',
+
     'a', 'b', 'c', 'd', 'e', 'f', 'g'
 ]
 
 note_pattern = '|'.join(sorted(note_names, key=len, reverse=True))
 
-pattern = rf"\b({note_pattern})('+)?([0-9]+)(\.)?"
+
+#pattern = rf"\b(?<!\\relative\s)({note_pattern})(,+)?('+)?(\d+)(\.)?"
+pattern = rf"\b({note_pattern})(,+)?('+)?(\d+)(\.)?"
 
 
 # Apply replacements

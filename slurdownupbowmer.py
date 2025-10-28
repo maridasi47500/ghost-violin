@@ -10,8 +10,10 @@ bow_index = [0]
 
 # Define note names
 note_names = [
+
     'aes', 'bes', 'ces', 'des', 'ees', 'fes', 'ges',
     'ais', 'bis', 'cis', 'dis', 'eis', 'fis', 'gis',
+    'as', 'bs', 'cs', 'ds', 'es', 'fs', 'gs',
     'a', 'b', 'c', 'd', 'e', 'f', 'g'
 ]
 
@@ -29,7 +31,8 @@ def apply_bowing(score):
     slur_pattern = re.compile(r"(\\slurUp\s*\()([^\)]+)\)", re.DOTALL)
     note_pattern = '|'.join(sorted(note_names, key=len, reverse=True))
 
-    note_regex = rf"(?<!\w)({note_pattern})'*[0-9]+(.)?(\))?(?!\w)"
+    #note_regex = rf"(?<!\w)({note_pattern})'*[0-9]+(.)?(\))?(?!\w)"
+    note_regex = rf"\b(?<!\\relative\s)({note_pattern})'*([0-9]+)'*(~)?(\.)?"
 
     for match in slur_pattern.finditer(score):
         start, end = match.span()
