@@ -2,7 +2,7 @@ import re
 
 # Fingering map: note → {string, finger, position}
 enharmonic_map = {
-    "ces": "b", "des": "cis","es":"dis", "ees": "dis", "fes": "e", "ges": "fis", "aes": "gis", "bes": "ais",
+    "ces": "b", "des": "cis","as":"aes","es":"ees", "ees": "dis", "fes": "e", "ges": "fis", "aes": "gis", "bes": "ais",
 
     "cis": "des", "dis": "ees", "eis": "f", "fis": "ges", "gis": "aes", "ais": "bes", "bis": "c"
 }
@@ -62,6 +62,10 @@ with open("pavanehey_absolute.ly", "r", encoding="utf-8") as file:
 # Replace placeholders with actual fingering data
 def replace_placeholders(match):
     print(match)
+    try:
+        sth = match.group(1)
+    except:
+        sth = ""
     note = match.group(1)
     try:
         hey = match.group(2)
@@ -80,6 +84,8 @@ def replace_placeholders(match):
         dot = match.group(5)
     except:
         dot = ""
+    if sth is None:
+        sth = ""
     if note is None:
         note = ""
     if height is None:
@@ -92,14 +98,18 @@ def replace_placeholders(match):
         dot = ""
     #print(note,height,duration,hey,dot)
     key = note+height
+    print("key",key)
 
     if key not in fingering_map:
         try:
+
             secondkey = enharmonic_map[note]
             mysecondkey = secondkey+height
+            print("second key",key,mysecondkey)
             if mysecondkey in fingering_map:
-                print(f"{secondkey}{hey}{height}{duration}{dot}")
-                return f"{secondkey}{height}{duration}{dot}"  # leave unannotated if not found
+                data = fingering_map[mysecondkey]
+                print(f'{secondkey}{height}{duration}{dot} ^{data["finger"]} _"{data["string"]}" _"{data["position"]}"')  # leave unannotated if not found
+                return f'{secondkey}{height}{duration}{dot} ^{data["finger"]} _"{data["string"]}" _"{data["position"]}"'  # leave unannotated if not found
         except:
             print("oooooops 1234")
         print(f"{note}{hey}{height}{duration}{dot}")
@@ -122,7 +132,7 @@ note_pattern = '|'.join(sorted(note_names, key=len, reverse=True))
 
 
 #pattern = rf"\b(?<!\\relative\s)({note_pattern})(,+)?('+)?(\d+)(\.)?"
-pattern = rf"\b({note_pattern})(,+)?('+)?(\d+)(\.)?"
+pattern = rf"\b(?<![a-g])({note_pattern})(,+)?('+)?(\d+)(\.)?"
 
 
 # Apply replacements

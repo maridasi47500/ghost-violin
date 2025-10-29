@@ -3,6 +3,7 @@ import re
 # Load the original LilyPond score
 with open("hey-la-mer-partition.ly", "r", encoding="utf-8") as file:
     original_score = file.read()
+precedentliaison=False
 
 # Define bowings and index
 bowings = ["\\downbow ", "\\upbow "]
@@ -33,7 +34,10 @@ def apply_bowing(score):
 
     #note_regex = rf"(?<!\w)({note_pattern})'*[0-9]+(.)?(\))?(?!\w)"
     note_regex = rf"\b(?<!\\relative\s)({note_pattern})'*([0-9]+)'*(~)?(\.)?"
+    #slur_regex = rf"\b({note_pattern})'*([0-9]+)'*(\.)?(~).({note_pattern})'*([0-9]+)'(\.)?"
 
+    #for match in slur_regex.finditer(score):
+    #    note,height,length,height,dot,liaison,note1,height1,length1,height2,dot= match.span()
     for match in slur_pattern.finditer(score):
         start, end = match.span()
         singles = score[pos:start]
