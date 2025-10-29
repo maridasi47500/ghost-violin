@@ -23,7 +23,8 @@ class ViolinFingeringMap:
         'E': "e''"
     }
 
-    positions = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV']
+    #positions = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV']
+    positions = ['I']
 
     def __init__(self, tonic='g', scale_type='major', octaves=3):
         octave=0
@@ -227,7 +228,7 @@ class ViolinFingeringMap:
                     mynumber += 1
 
 
-                if len(block) > 1 and block[1] in self.current_scale:
+                if len(self.positions) > 1 and len(block) > 1 and block[1] in self.current_scale:
                     #print("prochaine note, et deuxieme note du bloque dans la gamme")
                     if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale):
                         print("do nothgiun")

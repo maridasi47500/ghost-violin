@@ -1,6 +1,12 @@
 import re
 
 # Fingering map: note → {string, finger, position}
+enharmonic_map = {
+    "ces": "b", "des": "cis","es":"dis", "ees": "dis", "fes": "e", "ges": "fis", "aes": "gis", "bes": "ais",
+
+    "cis": "des", "dis": "ees", "eis": "f", "fis": "ges", "gis": "aes", "ais": "bes", "bis": "c"
+}
+
 fingering_map = {
     # G string
     "g":    {"string": "G", "finger": "0", "position": "I"},
@@ -40,7 +46,9 @@ fingering_map = {
     "d'''":    {"string": "E", "finger": "4", "position": "III"},
     "e'''":    {"string": "E", "finger": "1", "position": "V"},
 }
-fingering_map={'g': {'string': 'G', 'position': 'I', 'finger': '0'}, 'aes': {'string': 'G', 'position': 'I', 'finger': '1'}, 'a': {'string': 'G', 'position': 'I', 'finger': '1'}, 'bes': {'string': 'G', 'position': 'II', 'finger': '1'}, 'b': {'string': 'G', 'position': 'II', 'finger': '1'}, "c'": {'string': 'G', 'position': 'III', 'finger': '1'}, "des'": {'string': 'G', 'position': 'III', 'finger': '1'}, "d'": {'string': 'D', 'position': 'I', 'finger': '0'}, "ees'": {'string': 'D', 'position': 'I', 'finger': '1'}, "e'": {'string': 'D', 'position': 'I', 'finger': '1'}, "f'": {'string': 'D', 'position': 'II', 'finger': '1'}, "fis'": {'string': 'D', 'position': 'II', 'finger': '1'}, "g'": {'string': 'D', 'position': 'III', 'finger': '1'}, "aes'": {'string': 'D', 'position': 'III', 'finger': '1'}, "a'": {'string': 'A', 'position': 'I', 'finger': '0'}, "bes'": {'string': 'A', 'position': 'I', 'finger': '1'}, "b'": {'string': 'A', 'position': 'I', 'finger': '1'}, "c''": {'string': 'A', 'position': 'II', 'finger': '1'}, "des''": {'string': 'A', 'position': 'II', 'finger': '1'}, "d''": {'string': 'A', 'position': 'III', 'finger': '1'}, "ees''": {'string': 'A', 'position': 'IV', 'finger': '1'}, "e''": {'string': 'E', 'position': 'I', 'finger': '0'}, "f''": {'string': 'E', 'position': 'I', 'finger': '1'}, "fis''": {'string': 'E', 'position': 'I', 'finger': '1'}, "g''": {'string': 'E', 'position': 'II', 'finger': '1'}, "aes''": {'string': 'E', 'position': 'II', 'finger': '1'}, "a''": {'string': 'E', 'position': 'III', 'finger': '1'}, "bes''": {'string': 'E', 'position': 'IV', 'finger': '1'}, "b''": {'string': 'E', 'position': 'IV', 'finger': '1'}, "c'''": {'string': 'E', 'position': 'V', 'finger': '1'}, "des'''": {'string': 'E', 'position': 'V', 'finger': '1'}, "d'''": {'string': 'E', 'position': 'VI', 'finger': '1'}, "ees'''": {'string': 'E', 'position': 'VII', 'finger': '1'}, "e'''": {'string': 'E', 'position': 'VII', 'finger': '1'}, "f'''": {'string': 'E', 'position': 'VIII', 'finger': '1'}, "fis'''": {'string': 'E', 'position': 'VIII', 'finger': '1'}}
+fingering_map={'g': {'string': 'G', 'position': 'I', 'finger': '0'}, 'aes': {'string': 'G', 'position': 'I', 'finger': '1'}, 'a': {'string': 'G', 'position': 'I', 'finger': '2'}, 'bes': {'string': 'G', 'position': 'I', 'finger': '3'}, 'b': {'string': 'G', 'position': 'I', 'finger': '3'}, "c'": {'string': 'G', 'position': 'I', 'finger': '4'}, "des'": {'string': 'G', 'position': 'I', 'finger': '4'}, "d'": {'string': 'D', 'position': 'I', 'finger': '0'}, "ees'": {'string': 'D', 'position': 'I', 'finger': '1'}, "e'": {'string': 'D', 'position': 'I', 'finger': '1'}, "f'": {'string': 'D', 'position': 'I', 'finger': '2'}, "ges'": {'string': 'D', 'position': 'I', 'finger': '2'}, "g'": {'string': 'D', 'position': 'I', 'finger': '3'}, "aes'": {'string': 'D', 'position': 'I', 'finger': '3'}, "a'": {'string': 'A', 'position': 'I', 'finger': '0'}, "bes'": {'string': 'A', 'position': 'I', 'finger': '1'}, "b'": {'string': 'A', 'position': 'I', 'finger': '1'}, "c''": {'string': 'A', 'position': 'I', 'finger': '2'}, "des''": {'string': 'A', 'position': 'I', 'finger': '2'}, "d''": {'string': 'A', 'position': 'I', 'finger': '3'}, "ees''": {'string': 'A', 'position': 'I', 'finger': '4'}, "e''": {'string': 'E', 'position': 'I', 'finger': '0'}, "f''": {'string': 'E', 'position': 'I', 'finger': '1'}, "ges''": {'string': 'E', 'position': 'I', 'finger': '1'}, "g''": {'string': 'E', 'position': 'I', 'finger': '2'}, "aes''": {'string': 'E', 'position': 'I', 'finger': '2'}, "a''": {'string': 'E', 'position': 'I', 'finger': '3'}, "bes''": {'string': 'E', 'position': 'I', 'finger': '4'}, "b''": {'string': 'E', 'position': 'I', 'finger': '4'}}
+
+
 
 
 
@@ -84,7 +92,16 @@ def replace_placeholders(match):
         dot = ""
     #print(note,height,duration,hey,dot)
     key = note+height
+
     if key not in fingering_map:
+        try:
+            secondkey = enharmonic_map[note]
+            mysecondkey = secondkey+height
+            if mysecondkey in fingering_map:
+                print(f"{secondkey}{hey}{height}{duration}{dot}")
+                return f"{secondkey}{height}{duration}{dot}"  # leave unannotated if not found
+        except:
+            print("oooooops 1234")
         print(f"{note}{hey}{height}{duration}{dot}")
         return f"{note}{height}{duration}{dot}"  # leave unannotated if not found
     data = fingering_map[key]
