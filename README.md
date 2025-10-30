@@ -40,6 +40,10 @@ python3 -m venv ~/path/to/venv.
 ### why aes8 becomes as8 and a8 becomes a,8
  - aes is a falat and as is ab , lilypond normalize aes to as
 - in relative mode, a8 is a lower octave (A3) when converted, to absolute, it becomes, a,8
+- Run:
+  - `python3 mapviolinrefactored
+  - if you want to editthe position, string, you must edit , say in the program change positoin only e string, 1st position , etc
+
 
 ![alt text](music1.png)
 ![alt text](music.png)

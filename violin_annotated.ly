@@ -13,12 +13,12 @@ global = {
 violin = {
   \global
   % En avant la musique.
-  \slurUp (g''2~ ^3 _"E" _"I" \downbow  
+  \slurUp (g''2~ ^2 _"E" _"I" \downbow  
   
-  g''8 ^3 _"E" _"I" a''8 ^4 _"E" _"I") \slurUp (fis''8 \upbow 
-  e''8 ^0 _"E" _"I") d''4 ^4 _"A" _"I" \downbow  \slurUp (e''8 ^0 _"E" _"I" \upbow  fis''8) \slurUp (fis''8 \downbow  e''8 ^0 _"E" _"I") e''4 ^0 _"E" _"I" \upbow  \slurUp (b''2~ \downbow  b''8 c'''8) \slurUp (a''8 ^4 _"E" _"I" \upbow  g''8 ^3 _"E" _"I") fis''4 \downbow  \slurUp (g''8 ^3 _"E" _"I" \upbow  a''8~ ^4 _"E" _"I" a''8 ^4 _"E" _"I" b''8) \slurUp (g''8 ^3 _"E" _"I" \downbow  fis''8) e''4 ^0 _"E" _"I" \upbow  \slurUp (fis''8 \downbow  g''8~ ^3 _"E" _"I" g''8 ^3 _"E" _"I" a''8 ^4 _"E" _"I") \slurUp (fis''8 \upbow  e''8 ^0 _"E" _"I") \slurUp (fis''1 \downbow  fis''4) \slurUp (b''2~ \upbow  b''4~ b''2~ b''8 a''8 ^4 _"E" _"I") \slurUp (d'''8 \downbow  b''8) \slurUp (b''4 \upbow  a''4 ^4 _"E" _"I") \slurUp (g''4 ^3 _"E" _"I" \downbow  a''4 ^4 _"E" _"I") \slurUp (e''2~ ^0 _"E" _"I" \upbow  e''8 ^0 _"E" _"I" d''8 ^4 _"A" _"I") \slurUp (g''8 ^3 _"E" _"I" \downbow  fis''8) e''4 ^0 _"E" _"I" \upbow  b''4 \downbow  d'''4 \upbow   
-  \tuplet 3/2 { \slurUp (c'''8 \downbow  b''8 a''8 ^4 _"E" _"I") }
-  b''1
+  g''8 ^2 _"E" _"I" a''8 ^1 _"E" _"III") \slurUp (fis''8 ^1 _"E" _"I" \upbow 
+  e''8 ^0 _"E" _"I") d''4 ^3 _"A" _"I" \downbow  \slurUp (e''8 ^0 _"E" _"I" \upbow  fis''8 ^1 _"E" _"I") \slurUp (fis''8 ^1 _"E" _"I" \downbow  e''8 ^0 _"E" _"I") e''4 ^0 _"E" _"I" \upbow  \slurUp (b''2~ ^2 _"E" _"III" \downbow  b''8 ^2 _"E" _"III" c'''8 ^3 _"E" _"III") \slurUp (a''8 ^1 _"E" _"III" \upbow  g''8 ^2 _"E" _"I") fis''4 ^1 _"E" _"I" \downbow  \slurUp (g''8 ^2 _"E" _"I" \upbow  a''8~ ^1 _"E" _"III" a''8 ^1 _"E" _"III" b''8 ^2 _"E" _"III") \slurUp (g''8 ^2 _"E" _"I" \downbow  fis''8 ^1 _"E" _"I") e''4 ^0 _"E" _"I" \upbow  \slurUp (fis''8 ^1 _"E" _"I" \downbow  g''8~ ^2 _"E" _"I" g''8 ^2 _"E" _"I" a''8 ^1 _"E" _"III") \slurUp (fis''8 ^1 _"E" _"I" \upbow  e''8 ^0 _"E" _"I") \slurUp (fis''1 ^1 _"E" _"I" \downbow  fis''4 ^1 _"E" _"I") \slurUp (b''2~ ^2 _"E" _"III" \upbow  b''4~ ^2 _"E" _"III" b''2~ ^2 _"E" _"III" b''8 ^2 _"E" _"III" a''8 ^1 _"E" _"III") \slurUp (d'''8 ^4 _"E" _"III" \downbow  b''8 ^2 _"E" _"III") \slurUp (b''4 ^2 _"E" _"III" \upbow  a''4 ^1 _"E" _"III") \slurUp (g''4 ^2 _"E" _"I" \downbow  a''4 ^1 _"E" _"III") \slurUp (e''2~ ^0 _"E" _"I" \upbow  e''8 ^0 _"E" _"I" d''8 ^3 _"A" _"I") \slurUp (g''8 ^2 _"E" _"I" \downbow  fis''8 ^1 _"E" _"I") e''4 ^0 _"E" _"I" \upbow  b''4 ^2 _"E" _"III" \downbow  d'''4 ^4 _"E" _"III" \upbow   
+  \tuplet 3/2 { \slurUp (c'''8 ^3 _"E" _"III" \downbow  b''8 ^2 _"E" _"III" a''8 ^1 _"E" _"III") }
+  b''1 ^2 _"E" _"III"
 }
 
 

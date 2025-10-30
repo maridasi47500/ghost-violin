@@ -1,7 +1,8 @@
 import re
 
 class ViolinFingeringMap:
-    chromatic = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
+    #chromatic = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
+    chromatic = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
     octave_marks = ["", "'", "''", "'''","''''","'''''","''''''"]
     note_names = [
         'g', 'gis', 'a', 'ais', 'b', 
@@ -13,7 +14,7 @@ class ViolinFingeringMap:
 
     enharmonic_map = {
         "ces": "b", "des": "cis", "ees": "dis", "fes": "e", "ges": "fis", "aes": "gis", "bes": "ais",
-        "cis": "des", "dis": "ees", "eis": "f", "fis": "ges", "gis": "aes", "ais": "bes", "bis": "c"
+        "cis": "des", "dis": "ees", "eis": "f", "fis": "fis", "gis": "aes", "ais": "bes", "bis": "c"
     }
 
     starting_notes = {
@@ -23,8 +24,8 @@ class ViolinFingeringMap:
         'E': "e''"
     }
 
-    #positions = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV']
-    positions = ['I']
+    all_positions = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV']
+    positions = ['I','III']
 
     def __init__(self, tonic='g', scale_type='major', octaves=3):
         octave=0
@@ -163,7 +164,9 @@ class ViolinFingeringMap:
 
             newblock=0
             mynumber=0
+
             while note_index < len(self.note_names) and notes_assigned < 27:
+                maposition=0
                 #if fourthfinger > 1 and mynumber >= 8 and newblock>7:
                 #   break
 
@@ -228,8 +231,11 @@ class ViolinFingeringMap:
                     mynumber += 1
 
 
-                if len(self.positions) > 1 and len(block) > 1 and block[1] in self.current_scale:
+                current_position=self.all_positions.index(self.positions[position_index])
+                if maposition < len(self.positions) and len(block) > 1 and block[1] in self.current_scale:
+
                     #print("prochaine note, et deuxieme note du bloque dans la gamme")
+
                     if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale):
                         print("do nothgiun")
                     else:
@@ -240,8 +246,11 @@ class ViolinFingeringMap:
                         print("position", position)
                     finger = '1'
                     firstnotepassee = True
+                    maposition +=1
+                next_position=self.all_positions.index(self.positions[position_index])
 
-                note_index += 1
+                print("next position", next_position, current_position)
+                note_index += (next_position - current_position)
                 notes_assigned += 1
 
     def get_the_fingering_map(self):
