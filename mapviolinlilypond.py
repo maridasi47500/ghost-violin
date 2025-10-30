@@ -256,7 +256,7 @@ class ViolinFingeringMap:
         #for note in list(self.get_unique_fingerings())[:count]:
         #    print(f"{note["string"]}: {note["position"]}, {note["finger"]}: {note["note"]}")
 
-violin_map = ViolinFingeringMap(tonic='bes', scale_type='major', octaves=3)
+violin_map = ViolinFingeringMap(tonic='g', scale_type='major', octaves=3)
 violin_map.build_fingering_map()
 violin_map.display_sample()
 

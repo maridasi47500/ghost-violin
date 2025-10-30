@@ -4,7 +4,7 @@ import re
 enharmonic_map = {
     "ces": "b", "des": "cis","as":"aes","es":"ees", "ees": "dis", "fes": "e", "ges": "fis", "aes": "gis", "bes": "ais",
 
-    "cis": "des", "dis": "ees", "eis": "f", "fis": "ges", "gis": "aes", "ais": "bes", "bis": "c"
+    "cis": "des", "dis": "ees", "eis": "f", "fis": "fis", "gis": "aes", "ais": "bes", "bis": "c"
 }
 
 fingering_map = {
@@ -46,7 +46,8 @@ fingering_map = {
     "d'''":    {"string": "E", "finger": "4", "position": "III"},
     "e'''":    {"string": "E", "finger": "1", "position": "V"},
 }
-fingering_map={'g': {'string': 'G', 'position': 'I', 'finger': '0'}, 'aes': {'string': 'G', 'position': 'I', 'finger': '1'}, 'a': {'string': 'G', 'position': 'I', 'finger': '2'}, 'bes': {'string': 'G', 'position': 'I', 'finger': '3'}, 'b': {'string': 'G', 'position': 'I', 'finger': '3'}, "c'": {'string': 'G', 'position': 'I', 'finger': '4'}, "des'": {'string': 'G', 'position': 'I', 'finger': '4'}, "d'": {'string': 'D', 'position': 'I', 'finger': '0'}, "ees'": {'string': 'D', 'position': 'I', 'finger': '1'}, "e'": {'string': 'D', 'position': 'I', 'finger': '1'}, "f'": {'string': 'D', 'position': 'I', 'finger': '2'}, "ges'": {'string': 'D', 'position': 'I', 'finger': '2'}, "g'": {'string': 'D', 'position': 'I', 'finger': '3'}, "aes'": {'string': 'D', 'position': 'I', 'finger': '3'}, "a'": {'string': 'A', 'position': 'I', 'finger': '0'}, "bes'": {'string': 'A', 'position': 'I', 'finger': '1'}, "b'": {'string': 'A', 'position': 'I', 'finger': '1'}, "c''": {'string': 'A', 'position': 'I', 'finger': '2'}, "des''": {'string': 'A', 'position': 'I', 'finger': '2'}, "d''": {'string': 'A', 'position': 'I', 'finger': '3'}, "ees''": {'string': 'A', 'position': 'I', 'finger': '4'}, "e''": {'string': 'E', 'position': 'I', 'finger': '0'}, "f''": {'string': 'E', 'position': 'I', 'finger': '1'}, "ges''": {'string': 'E', 'position': 'I', 'finger': '1'}, "g''": {'string': 'E', 'position': 'I', 'finger': '2'}, "aes''": {'string': 'E', 'position': 'I', 'finger': '2'}, "a''": {'string': 'E', 'position': 'I', 'finger': '3'}, "bes''": {'string': 'E', 'position': 'I', 'finger': '4'}, "b''": {'string': 'E', 'position': 'I', 'finger': '4'}}
+fingering_map={'g': {'string': 'G', 'position': 'I', 'finger': '0'}, 'aes': {'string': 'G', 'position': 'I', 'finger': '1'}, 'a': {'string': 'G', 'position': 'I', 'finger': '2'}, 'bes': {'string': 'G', 'position': 'I', 'finger': '2'}, 'b': {'string': 'G', 'position': 'I', 'finger': '3'}, "c'": {'string': 'G', 'position': 'I', 'finger': '4'}, "des'": {'string': 'G', 'position': 'I', 'finger': '4'}, "d'": {'string': 'D', 'position': 'I', 'finger': '0'}, "ees'": {'string': 'D', 'position': 'I', 'finger': '1'}, "e'": {'string': 'D', 'position': 'I', 'finger': '2'}, "f'": {'string': 'D', 'position': 'I', 'finger': '2'}, "ges'": {'string': 'D', 'position': 'I', 'finger': '3'}, "g'": {'string': 'D', 'position': 'I', 'finger': '4'}, "aes'": {'string': 'D', 'position': 'I', 'finger': '4'}, "a'": {'string': 'A', 'position': 'I', 'finger': '0'}, "bes'": {'string': 'A', 'position': 'I', 'finger': '1'}, "b'": {'string': 'A', 'position': 'I', 'finger': '2'}, "c''": {'string': 'A', 'position': 'I', 'finger': '3'}, "des''": {'string': 'A', 'position': 'I', 'finger': '3'}, "d''": {'string': 'A', 'position': 'I', 'finger': '4'}, "ees''": {'string': 'A', 'position': 'I', 'finger': '4'}, "e''": {'string': 'E', 'position': 'I', 'finger': '0'}, "f''": {'string': 'E', 'position': 'I', 'finger': '1'}, "ges''": {'string': 'E', 'position': 'I', 'finger': '2'}, "g''": {'string': 'E', 'position': 'I', 'finger': '3'}, "aes''": {'string': 'E', 'position': 'I', 'finger': '3'}, "a''": {'string': 'E', 'position': 'I', 'finger': '4'}, "bes''": {'string': 'E', 'position': 'I', 'finger': '4'}}
+
 
 
 

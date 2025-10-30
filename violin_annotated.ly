@@ -1,72 +1,33 @@
-\version "2.20.0"
+\version "2.24.3"
 
 \header {
-  title = "la mer"
-  composer = "hey"
+  title = "pavane"
+  instrument = "violon"
 }
 
 global = {
-  \clef treble
-  \key bes \major
+  \key g \major
   \time 4/4
 }
 
 violin = {
-  
   \global
-  {
+  % En avant la musique.
+  \slurUp (g''2~ ^3 _"E" _"I" \downbow  
   
-
-  % Mesure 1
-  \slurUp (bes16 ^3 _"G" _"I" \downbow  c'8. ^4 _"G" _"I")
-  \slurUp (g'2. ^3 _"D" _"I" \upbow  g'2. ^3 _"D" _"I") r4
-  }
-  % Mesure 2
-  {
-    \slurUp (bes16 ^3 _"G" _"I" \downbow  c'8. ^4 _"G" _"I")
-    g'2 ^3 _"D" _"I" \upbow 
-    \tuplet 3/2 { \slurUp (bes'8 ^1 _"A" _"I" \downbow  c''8. ^2 _"A" _"I" g'16 ^3 _"D" _"I") }
-  }
-
-  % Mesure 3
-  {
-    \tuplet 3/2 { bes'8 ^1 _"A" _"I" \upbow  f'8 ^2 _"D" _"I" \downbow  g'8 ^3 _"D" _"I" \upbow  }
-    \tuplet 3/2 { d'8 ^0 _"D" _"I" \downbow  ees'8. ^1 _"D" _"I" \upbow  bes16 ^3 _"G" _"I" \downbow  }
-    c'4~ ^4 _"G" _"I" \upbow  
-    \tuplet 3/2 { c'8 ^4 _"G" _"I"  \slurUp (a8 ^2 _"G" _"I" \downbow  c'8 ^4 _"G" _"I" }
-    \tuplet 3/2 { ees'8 ^1 _"D" _"I") \slurUp (c'8. ^4 _"G" _"I" \upbow  ees'16 ^1 _"D" _"I" }
-    \tuplet 3/2 { g'8 ^3 _"D" _"I") \slurUp (ees'8 ^1 _"D" _"I" \downbow  g'8 ^3 _"D" _"I") }
-    \tuplet 3/2 { a'8 ^0 _"A" _"I" \upbow  g'8. ^3 _"D" _"I" \downbow  \slurUp (a'16 ^0 _"A" _"I" \upbow  }
-    \tuplet 3/2 { g'8 ^3 _"D" _"I") \slurUp (a'8 ^0 _"A" _"I" \downbow  g'8 ^3 _"D" _"I") }
-    \tuplet 3/2 { a'8 ^0 _"A" _"I" \upbow  g'8. ^3 _"D" _"I" \downbow  \slurUp (a'16 ^0 _"A" _"I" \upbow  }
-    \tuplet 3/2 { g'8 ^3 _"D" _"I") \slurUp (a'8 ^0 _"A" _"I" \downbow  g'8 ^3 _"D" _"I") }
-  }
-
-  % Mesure 4 — clef treble
-  {
-    \tuplet 3/2 { \slurUp (bes'8 ^1 _"A" _"I" \upbow  ges'8. ^2 _"D" _"I" bes'16 ^1 _"A" _"I") }
-    \slurUp (des''4~ ^2 _"A" _"I" \downbow 
-    \tuplet 3/2 { des''8 ^2 _"A" _"I" ees''8. ^4 _"A" _"I" c''16 ^2 _"A" _"I") }
-    \tuplet 3/2 { des''8 ^2 _"A" _"I" \upbow  bes'8 ^1 _"A" _"I" \downbow  c''8 ^2 _"A" _"I" \upbow  }
-    \tuplet 3/2 { \slurUp (aes'8 ^3 _"D" _"I" \downbow  bes'8. ^1 _"A" _"I" ges'16 ^2 _"D" _"I") }
-    \tuplet 3/2 { aes'8 ^3 _"D" _"I" \upbow  f'8 ^2 _"D" _"I" \downbow  ges'8 ^2 _"D" _"I" \upbow  }
-  }
-
-  % Mesure 5
-  {
-    \tuplet 3/2 { \slurUp (f'8 ^2 _"D" _"I" \downbow  d'8. ^0 _"D" _"I" f'16 ^2 _"D" _"I") }
-    \tuplet 3/2 { d'8 ^0 _"D" _"I" \upbow  \slurUp (f'8 ^2 _"D" _"I" \downbow  d'8~ ^0 _"D" _"I") }
-    d'8 ^0 _"D" _"I" r8 r4
-    
-  }
+  g''8 ^3 _"E" _"I" a''8 ^4 _"E" _"I") \slurUp (fis''8 \upbow 
+  e''8 ^0 _"E" _"I") d''4 ^4 _"A" _"I" \downbow  \slurUp (e''8 ^0 _"E" _"I" \upbow  fis''8) \slurUp (fis''8 \downbow  e''8 ^0 _"E" _"I") e''4 ^0 _"E" _"I" \upbow  \slurUp (b''2~ \downbow  b''8 c'''8) \slurUp (a''8 ^4 _"E" _"I" \upbow  g''8 ^3 _"E" _"I") fis''4 \downbow  \slurUp (g''8 ^3 _"E" _"I" \upbow  a''8~ ^4 _"E" _"I" a''8 ^4 _"E" _"I" b''8) \slurUp (g''8 ^3 _"E" _"I" \downbow  fis''8) e''4 ^0 _"E" _"I" \upbow  \slurUp (fis''8 \downbow  g''8~ ^3 _"E" _"I" g''8 ^3 _"E" _"I" a''8 ^4 _"E" _"I") \slurUp (fis''8 \upbow  e''8 ^0 _"E" _"I") \slurUp (fis''1 \downbow  fis''4) \slurUp (b''2~ \upbow  b''4~ b''2~ b''8 a''8 ^4 _"E" _"I") \slurUp (d'''8 \downbow  b''8) \slurUp (b''4 \upbow  a''4 ^4 _"E" _"I") \slurUp (g''4 ^3 _"E" _"I" \downbow  a''4 ^4 _"E" _"I") \slurUp (e''2~ ^0 _"E" _"I" \upbow  e''8 ^0 _"E" _"I" d''8 ^4 _"A" _"I") \slurUp (g''8 ^3 _"E" _"I" \downbow  fis''8) e''4 ^0 _"E" _"I" \upbow  b''4 \downbow  d'''4 \upbow   
+  \tuplet 3/2 { \slurUp (c'''8 \downbow  b''8 a''8 ^4 _"E" _"I") }
+  b''1
 }
+
+
 
 \score {
   \new Staff \with {
     instrumentName = "Violon"
     midiInstrument = "violin"
   } \violin
-
   \layout { }
   \midi {
     \tempo 4=100

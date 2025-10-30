@@ -1,7 +1,7 @@
 import re
 
 # Load the original LilyPond score
-with open("hey-la-mer-partition.ly", "r", encoding="utf-8") as file:
+with open("pavanehey.ly", "r", encoding="utf-8") as file:
     original_score = file.read()
 global precedentliaison
 precedentliaison=False
