@@ -1,0 +1,1 @@
+(cd scores/ && lilypond-book myscoregisoogoo.html -f html --output myscoregisoogoo)

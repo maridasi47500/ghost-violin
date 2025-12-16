@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request
 from mapviolin import ViolinFingeringMap
+import subprocess
+from subprocess import run
+
 app = Flask(__name__)
 
 def to_lilypond(note): 
@@ -16,10 +19,18 @@ print(fingering_map_violin)
 
 
 
+@app.route('/mynote', methods=['GET'])
+def mynote():
+    result = None
+    return render_template('myscore/myscore.html')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     result = None
+    myscorenotesone=""
+    string = ""
+    position = ""
+    finger = ""
     if request.method == 'POST':
         string = request.form['string']
         position = request.form['position']
@@ -36,6 +47,9 @@ def index():
         # Apply alteration
         result="sur la string de "+string+ " en "+position+"e position avec le "+finger+"e doigt, je pourrais faire les notes:"
         number=1
+        myscorenotes=""
+
+
         for base_note in base_notes:
             number+=1
             #if alteration == 'diese' and not 'is' in base_note:
@@ -46,8 +60,17 @@ def index():
             ## Convert to LilyPond format
             #lilypond_note = base_note.replace("'''", "'''").replace("''", "''").replace("'", "'")
             result += f"LilyPond note n°{number}: {base_note}<br>"
+            #myscorenotes += " "+base_note
+            myscorenotesone += base_note.replace("'","o")
+            myscorenotes += "\\relative f {\n"+base_note+"}\n"
+        with open("./scores/myscore"+myscorenotesone+".html", "w") as f:
+         f.write("<lilypond fragment staffsize=54>\\version \"2.24.3\"\n \n"+myscorenotes+"\n\n</lilypond>")
 
-    return render_template('form.html', result=result,tonalite=violin_map.get_my_scale_name())
+        with open("demofile.sh", "w") as f:
+         f.write("(cd scores/ && lilypond-book myscore"+myscorenotesone+".html -f html --output myscore"+myscorenotesone+")")
+        rc = subprocess.Popen(["sh", "./demofile.sh"])
+
+    return render_template('form.html', result=result,tonalite=violin_map.get_my_scale_name(), myscorenotes=myscorenotesone, string=string, position=position, finger=finger)
 
 if __name__ == '__main__':
     app.run()

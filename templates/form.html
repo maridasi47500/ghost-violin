@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html> <html>
 <head><title>Violin Fingering to LilyPond</title></head>
 <body>
   <h2>🎻 Select Fingering</h2>
@@ -10,20 +9,20 @@
   <form method="POST">
     <label>String:</label>
     <select name="string">
-      <option>G</option><option>D</option><option>A</option><option>E</option>
+      <option {{ "selected=\"selected\"" if string == "G" else ""}}>G</option><option {{ "selected=\"selected\"" if string == "D" else ""}}>D</option><option {{ "selected=\"selected\"" if string == "A" else ""}}>A</option><option {{ "selected=\"selected\"" if string == "E" else ""}}>E</option>
     </select><br>
 
     <label>Position:</label>
     <select name="position">
       {% for pos in ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV'] %}
-        <option>{{ pos }}</option>
+        <option value="{{ pos }}" {{ "selected=\"selected\"" if pos == position else ""}}>{{ pos }}</option>
       {% endfor %}
     </select><br>
 
     <label>Finger:</label>
     <select name="finger">
       {% for f in ['0','1','2','3','4'] %}
-        <option>{{ f }}</option>
+        <option value="{{ f }}" {{ "selected=\"selected\"" if f == finger else ""}}>{{ f }}</option>
       {% endfor %}
     </select><br>
 
@@ -39,6 +38,8 @@
 
   {% if result %}
     <h3>{{ result }}</h3>
+    <iframe src="http://localhost:8000/scores/myscore{{ myscorenotes }}/myscore{{ myscorenotes }}.html" style="width:400px;height:400px;">
+    </iframe>
   {% endif %}
 </body>
 </html>
