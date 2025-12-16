@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from mapviolin import ViolinFingeringMap
+#from violinmaprefactored import ViolinFingeringMap
 import subprocess
 from subprocess import run
 
@@ -62,9 +63,10 @@ def index():
             result += f"LilyPond note n°{number}: {base_note}<br>"
             #myscorenotes += " "+base_note
             myscorenotesone += base_note.replace("'","o")
-            myscorenotes += "\\relative f {\n"+base_note+"}\n"
+            myscorenotes += "\\relative c {\n"+base_note+"}\n"
+            #myscorenotes += " "+base_note
         with open("./scores/myscore"+myscorenotesone+".html", "w") as f:
-         f.write("<lilypond fragment staffsize=54>\\version \"2.24.3\"\n \n"+myscorenotes+"\n\n</lilypond>")
+         f.write("<lilypond fragment staffsize=54>\\version \"2.24.3\"\n\n"+myscorenotes+"\n\n</lilypond>")
 
         with open("demofile.sh", "w") as f:
          f.write("(cd scores/ && lilypond-book myscore"+myscorenotesone+".html -f html --output myscore"+myscorenotesone+")")

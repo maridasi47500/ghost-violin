@@ -1,9 +1,10 @@
 import re
 
+        #'c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b',
 class ViolinFingeringMap:
     note_names = [
         'g', 'gis', 'a', 'ais', 'b',
-        'c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b',
+
         "c'", "cis'", "d'", "dis'", "e'", "f'", "fis'", "g'", "gis'", "a'", "ais'", "b'",
         "c''", "cis''", "d''", "dis''", "e''", "f''", "fis''", "g''", "gis''", "a''", "ais''", "b''",
         "c'''", "cis'''", "d'''", "dis'''", "e'''", "f'''"
@@ -16,7 +17,7 @@ class ViolinFingeringMap:
 
     starting_notes = {
         'G': 'g',
-        'D': 'd',
+        'D': "d'",
         'A': "a'",
         'E': "e''"
     }
@@ -45,6 +46,8 @@ class ViolinFingeringMap:
 
     def generate_scale(self, tonic, scale_type='major', octaves=3):
         chromatic = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
+        chromatic2 = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
+        chromatic1 = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
 
         steps = [2, 2, 1, 2, 2, 2, 1] if scale_type == 'major' else [2, 1, 2, 2, 1, 2, 2]
         try:
@@ -53,16 +56,21 @@ class ViolinFingeringMap:
             chromatic = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
             start_index = chromatic.index(tonic)
         scale_notes = []
-        octave_marks = ["", "'", "''", "'''"]
+        octave_marks = ["", "'", "''", "'''", "''''"]
         #de la g string a vide a la premiere note
         #increment octave marks au "g" 
         #mapviolin for lilypod
 
+        myoctavemark=0
         for octave in range(octaves+1):
             idx = start_index
             for step in [0] + steps:
-                note = chromatic[idx % 12] + octave_marks[octave]
+                
+                note = chromatic[idx % 12] + octave_marks[myoctavemark]
                 scale_notes.append(note)
+                if chromatic[idx % 12] == "b":
+                    myoctavemark+=1
+                
                 idx += step
 
         return set(scale_notes)
@@ -76,10 +84,12 @@ class ViolinFingeringMap:
             finger = '1'
             firstnotepassee = False
             notes_assigned = 0
-            if string == "G" or string == "D":
+            if string == "G":
                 mynote=string.lower()
-            elif string == "A" or string == "E":
+            elif string == "D" or string == "A":
                 mynote=string.lower()+"'"
+            elif string == "E":
+                mynote=string.lower()+"''"
             self.fingering_map[mynote] = {
                 "string": string,
                 "position": "I",
