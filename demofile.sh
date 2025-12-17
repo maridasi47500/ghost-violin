@@ -1,1 +1,1 @@
-(cd scores/ && lilypond-book myscoreeodoaiscofobcisodiso.html -f html --output myscoreeodoaiscofobcisodiso)
+(cd scores/ && lilypond-book myscoreboobesooeooodisooocoooaisoodooocisoooeesooodesooofooo.html -f html --output myscoreboobesooeooodisooocoooaisoodooocisoooeesooodesooofooo)

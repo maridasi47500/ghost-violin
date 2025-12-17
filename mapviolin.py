@@ -31,6 +31,7 @@ class ViolinFingeringMap:
         self.fingering_map = {}
         self.other_fingering_map = []
         self.current_scale = self.generate_scale(tonic, scale_type, octaves)
+        self.current_scale_with_enharmonic = self.generate_scale(tonic, scale_type, octaves, with_enharmonic=True)
     def get_my_scale_name(self):
         return self.tonic+" "+self.scale_type
 
@@ -44,7 +45,7 @@ class ViolinFingeringMap:
     def strip_octave(self, note):
         return note.replace("'''", "").replace("''", "").replace("'", "")
 
-    def generate_scale(self, tonic, scale_type='major', octaves=3):
+    def generate_scale(self, tonic, scale_type='major', octaves=3, with_enharmonic=False):
         chromatic = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
         chromatic2 = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
         chromatic1 = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
@@ -66,8 +67,16 @@ class ViolinFingeringMap:
             idx = start_index
             for step in [0] + steps:
                 
+
                 note = chromatic[idx % 12] + octave_marks[myoctavemark]
                 scale_notes.append(note)
+                if with_enharmonic is True:
+                    try:
+                        mynote = chromatic[idx % 12]
+                        myenharmonic = self.enharmonic_map[mynote]+ octave_marks[myoctavemark]
+                        scale_notes.append(myenharmonic)
+                    except:
+                        print("enharmonic error")
                 if chromatic[idx % 12] == "b":
                     myoctavemark+=1
                 
@@ -120,11 +129,32 @@ class ViolinFingeringMap:
                         "finger": finger
                     })
 
+                    try:
+                        manote=self.enharmonic_map[note.replace("'","")]+note.replace(note.replace("'",""), "")
+                        self.other_fingering_map.append({
+                            "note": manote,
+                            "string": string,
+                            "position": position,
+                            "finger": finger
+                        })
+                    except:
+                        print("enharmonic error (array)")
+
+
                     self.fingering_map[note] = {
                         "string": string,
                         "position": position,
                         "finger": finger
                     }
+                    try:
+                        manote=self.enharmonic_map[note.replace("'","")]+note.replace(note.replace("'",""), "")
+                        self.fingering_map[manote] = {
+                            "string": string,
+                            "position": position,
+                            "finger": finger
+                        }
+                    except:
+                        print("enharmonic error hash")
                     print(string, finger)
 
                     if note_index + mynumber + 1 < len(self.note_names):
@@ -132,10 +162,10 @@ class ViolinFingeringMap:
                         prev_note = self.note_names[note_index + mynumber - 1] if mynumber > 1 else None
                         
                     
-                        if next_note in self.current_scale:
+                        if next_note in self.current_scale_with_enharmonic:
                             print("prochaine ntoe dans la gamme")
 
-                            if position == "I" and finger == 1 and note not in self.current_scale:
+                            if position == "I" and finger == 1 and note not in self.current_scale_with_enharmonic:
                                 print("NE FAIS RIEN")
 
 
@@ -145,17 +175,19 @@ class ViolinFingeringMap:
                     mynumber += 1
 
 
-                if len(block) > 1 and block[1] in self.current_scale:
+                if len(block) > 1 and block[1] in self.current_scale_with_enharmonic:
                     print("prochaine note, et deuxieme note du bloque dans la gamme")
-                    if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale):
+                    if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale_with_enharmonic):
                         print("do nothgiun")
                     else:
                         position_index += 1
+                        finger = '1'
                     
                     if position_index < len(self.positions):
                         position = self.positions[position_index]
+                        finger = '1'
                         print("position", position)
-                    finger = '1'
+
                     firstnotepassee = True
 
                 note_index += 1
