@@ -11,6 +11,7 @@ def to_lilypond(note):
 # Your fingering map here (import or define)
 violin_map = ViolinFingeringMap(tonic='g', scale_type='major', octaves=3)
 violin_map.build_fingering_map()
+violin_map.save_my_fingering_in_html()
 fingering_map_violin = violin_map.get_unique_fingerings()
 
 

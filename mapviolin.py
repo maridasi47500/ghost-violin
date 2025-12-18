@@ -1,4 +1,7 @@
 import re
+import subprocess
+from subprocess import run
+
 
         #'c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b',
 class ViolinFingeringMap:
@@ -50,7 +53,7 @@ class ViolinFingeringMap:
         chromatic2 = ['c', 'cis', 'd', 'dis', 'e', 'f', 'fis', 'g', 'gis', 'a', 'ais', 'b']
         chromatic1 = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
 
-        steps = [2, 2, 1, 2, 2, 2, 1] if scale_type == 'major' else [2, 1, 2, 2, 1, 2, 2]
+        steps = [0, 2, 2, 1, 2, 2, 2, 1] if scale_type == 'major' else [0, 2, 1, 2, 2, 1, 2, 2]
         try:
             start_index = chromatic.index(tonic) #g string, 
         except:
@@ -62,8 +65,9 @@ class ViolinFingeringMap:
         #increment octave marks au "g" 
         #mapviolin for lilypod
 
-        myoctavemark=0
+
         for octave in range(octaves+1):
+            myoctavemark=octave
             idx = start_index
             for step in [0] + steps:
                 
@@ -71,6 +75,8 @@ class ViolinFingeringMap:
                 note = chromatic[idx % 12] + octave_marks[myoctavemark]
                 scale_notes.append(note)
                 if with_enharmonic is True:
+                    print("TRUE ENHARMONIC")
+                    print(chromatic[idx % 12])
                     try:
                         mynote = chromatic[idx % 12]
                         myenharmonic = self.enharmonic_map[mynote]+ octave_marks[myoctavemark]
@@ -78,10 +84,12 @@ class ViolinFingeringMap:
                     except:
                         print("enharmonic error")
                 if chromatic[idx % 12] == "b":
+                    print("B ENHARMONIC")
                     myoctavemark+=1
                 
                 idx += step
 
+        print(scale_notes)
         return set(scale_notes)
 
     def build_fingering_map(self):
@@ -90,7 +98,7 @@ class ViolinFingeringMap:
             note_index = self.note_names.index(self.starting_notes[string]) + 1
             position_index = 0
             position = self.positions[position_index]
-            finger = '1'
+            finger = 1
             firstnotepassee = False
             notes_assigned = 0
             if string == "G":
@@ -112,11 +120,22 @@ class ViolinFingeringMap:
                 "finger": "0"
             })
 
+            
+            premierpasse=False 
             while note_index < len(self.note_names) and notes_assigned < 27:
-                block = self.note_names[note_index:note_index + 8]
+                block = self.note_names[note_index:note_index + 5]
                 mynumber = 0
 
+                if len(block) > 1 and block[0] in self.current_scale_with_enharmonic and notes_assigned > 1:
+                    print("premiere note du bloque dans la gamme")
+                    position_index += 1
+                    if position_index < len(self.positions):
+                         position = self.positions[position_index]
+
+
                 for note in block:
+                    if mynumber == 0:
+                        finger=1
                     print(note,"note")
 
                     if notes_assigned >= 27 or note_index >= len(self.note_names):
@@ -164,31 +183,34 @@ class ViolinFingeringMap:
                     
                         if next_note in self.current_scale_with_enharmonic:
                             print("prochaine ntoe dans la gamme")
+                            finger = str(min(int(finger) + 1, 4))
 
-                            if position == "I" and finger == 1 and note not in self.current_scale_with_enharmonic:
-                                print("NE FAIS RIEN")
+                            #if position == "I" and finger == 1 and note not in self.current_scale_with_enharmonic:
+                            #    print("NE FAIS RIEN")
 
 
 
-                            else:
-                                finger = str(min(int(finger) + 1, 4))
+                            #else:
+                            #    finger = str(min(int(finger) + 1, 4))
                     mynumber += 1
 
+                premierpasse =True
 
-                if len(block) > 1 and block[1] in self.current_scale_with_enharmonic:
-                    print("prochaine note, et deuxieme note du bloque dans la gamme")
-                    if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale_with_enharmonic):
-                        print("do nothgiun")
-                    else:
-                        position_index += 1
-                        finger = '1'
-                    
-                    if position_index < len(self.positions):
-                        position = self.positions[position_index]
-                        finger = '1'
-                        print("position", position)
 
-                    firstnotepassee = True
+
+
+                    #if position == "I" and note_index < self.note_names.index(self.starting_notes[string]) + 2 and (block[0] not in self.current_scale_with_enharmonic):
+                    #    print("do nothgiun")
+                    #else:
+                    #    position_index += 1
+                    #    finger = 1
+                    #
+                    #if position_index < len(self.positions):
+                    #    position = self.positions[position_index]
+                    #    finger = 1
+                    #    print("position", position)
+
+                firstnotepassee = True
 
                 note_index += 1
                 notes_assigned += 1
@@ -204,8 +226,34 @@ class ViolinFingeringMap:
         print(self.get_the_fingering_map())
         #for note in list(self.get_unique_fingerings())[:count]:
         #    print(f"{note["string"]}: {note["position"]}, {note["finger"]}: {note["note"]}")
+    def save_my_fingering_in_html(self, count=20):
+        print("🎻 Fingering Map (sample):")
+        #print(list(self.get_unique_fingerings()))
+        myscore="<h1>all my fingering on all strings of the violin "+str(self.tonic)+" "+self.scale_type+" scale</h1><lilypond fragment staffsize=32>"
+        myscorenotes="<p>"
+        for x in self.current_scale_with_enharmonic:
+            myscorenotes+=" "  +x
+        myscorenotes+="-- "
+        for x in self.other_fingering_map:
+            myscore+=" "  +x["note"]+"^"+str(x["finger"])+"_\""+x["position"]+"\"_\""+x["string"]+"\"_\""+x["note"]+"\"_\""+("hey" if x["note"]  in self.current_scale_with_enharmonic else "")+"\""
+            if x["note"] in self.current_scale_with_enharmonic:
+                print(self.current_scale_with_enharmonic)
+                
+                print(x["note"])
+                myscorenotes+=" "  +x["note"]
+        myscore+="</lilypond>"
+        myscorenotes+="</p>"
+        myscore+=myscorenotes
+        with open("mapviolin.html", "w") as f:
+         f.write(myscore)
+        with open("writescale.sh", "w") as f:
+         f.write("(lilypond-book mapviolin.html -f html --output gammes)")
+        rc = subprocess.Popen(["sh", "./writescale.sh"])
 
-violin_map = ViolinFingeringMap(tonic='bes', scale_type='major', octaves=3)
+ 
+
+violin_map = ViolinFingeringMap(tonic='g', scale_type='major', octaves=3)
 violin_map.build_fingering_map()
+#violin_map.save_my_fingering_in_html()
 violin_map.display_sample()
 
