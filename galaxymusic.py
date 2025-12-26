@@ -89,7 +89,7 @@ class ViolinFingeringMapMusic:
         myscore=""
         for tonic in ["a","b","c","e","f","g"]:
             for scale_type in ["major", "minor"]:
-                violin_map = ViolinFingeringMap(tonic=tonic, scale_type=scale_type, octaves=4)
+                violin_map = ViolinFingeringMap(tonic=tonic, scale_type=scale_type, octaves=octaves, open_string=False)
                 violin_map.build_fingering_map()
                 violin_map.get_my_scale_enharmonic_scale()
 
@@ -101,20 +101,23 @@ class ViolinFingeringMapMusic:
                 myposition=0
                 nbnotes=0
                 for y in self.scales_in_one_position():
-                    nbnotes+=1
-                    try:
-                        x=violin_map.search_for_note(y.replace("4",""), myposition)[-1]
-                        print(x, y, myposition)
-
-                        mystring=x["string"]
-                        myscore+=" "  +x["note"]+"^"+str(x["finger"])+("_\""+x["position"]+"\"" if nbnotes == 1 else "")+("_\""+x["string"]+"\"" if mystring != prevstring else "")+("_\""+str(nbnotes)+"\"")
-                        prevstring=x["string"]
-                    except:
+                    if y == "\\break":
                         myscore+=" "  +y+("_\""+self.positions[myposition]+"\"" if nbnotes == 1 else "")
+                    else:
+                        nbnotes+=1
+                        try:
+                            x=violin_map.search_for_note(y.replace("4",""), myposition)[-1]
+                            print(x, y, myposition)
 
-                    if nbnotes == 32:
-                        myposition+=1
-                        nbnotes=0
+                            mystring=x["string"]
+                            myscore+=" "  +x["note"]+"^"+str(x["finger"])+("_\""+x["position"]+"\"" if nbnotes == 1 else "")+("_\""+x["string"]+"\"" if mystring != prevstring else "")+("_\""+str(nbnotes)+"\"")
+                            prevstring=x["string"]
+                        except:
+                            myscore+=" "  +y+("_\""+self.positions[myposition]+"\"" if nbnotes == 1 else "")
+
+                        if nbnotes == 32:
+                            myposition+=1
+                            nbnotes=0
                     
                 myscore+="</lilypond>"
         with open("mapviolinscales.html", "w") as f:
@@ -355,6 +358,7 @@ class ViolinFingeringMapMusic:
 
 violin_map = ViolinFingeringMapMusic(tonic='g', scale_type='major', octaves=5)
 violin_map.build_fingering_map()
-print(violin_map.scales_in_one_position())
+
 violin_map.save_my_scales_in_one_position_in_html()
+print(violin_map.scales_in_one_position())
 

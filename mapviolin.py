@@ -27,8 +27,9 @@ class ViolinFingeringMap:
 
     positions = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV']
 
-    def __init__(self, tonic='g', scale_type='major', octaves=3):
+    def __init__(self, tonic='g', scale_type='major', octaves=3, open_string = True):
         self.tonic = tonic
+        self.open_string = open_string
         self.scale_type = scale_type
         self.octaves = octaves
         self.fingering_map = {}
@@ -111,23 +112,24 @@ class ViolinFingeringMap:
                 mynote=string.lower()+"'"
             elif string == "E":
                 mynote=string.lower()+"''"
-            self.fingering_map[mynote] = {
-                "string": string,
-                "position": "I",
-                "finger": "0"
-            }
+            if self.open_string is True:
+                self.fingering_map[mynote] = {
+                    "string": string,
+                    "position": "I",
+                    "finger": "0"
+                }
 
-            self.other_fingering_map.append({
-                "note": self.starting_notes[string],
-                "string": string,
-                "position": "I",
-                "finger": "0"
-            })
+                self.other_fingering_map.append({
+                    "note": self.starting_notes[string],
+                    "string": string,
+                    "position": "I",
+                    "finger": "0"
+                })
 
             
             premierpasse=False 
             while note_index < len(self.note_names) and notes_assigned < 27:
-                block = self.note_names[note_index:note_index + 5]
+                block = self.note_names[note_index:note_index + 6]
                 mynumber = 0
 
                 if len(block) > 1 and block[0] in self.current_scale_with_enharmonic and notes_assigned > 1:
