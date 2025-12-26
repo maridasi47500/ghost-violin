@@ -1,0 +1,17 @@
+@image{d6/lily-72a18d62-1}
+@image{d6/lily-72a18d62-2}
+@image{d6/lily-72a18d62-3}
+@image{d6/lily-72a18d62-4}
+@image{d6/lily-72a18d62-5}
+@image{d6/lily-72a18d62-6}
+@image{d6/lily-72a18d62-7}
+@image{d6/lily-72a18d62-8}
+@image{d6/lily-72a18d62-9}
+@image{d6/lily-72a18d62-10}
+@image{d6/lily-72a18d62-11}
+@image{d6/lily-72a18d62-12}
+@image{d6/lily-72a18d62-13}
+@image{d6/lily-72a18d62-14}
+@image{d6/lily-72a18d62-15}
+@image{d6/lily-72a18d62-16}
+@c eof

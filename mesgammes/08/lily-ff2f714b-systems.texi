@@ -1,0 +1,15 @@
+@image{08/lily-ff2f714b-1}
+@image{08/lily-ff2f714b-2}
+@image{08/lily-ff2f714b-3}
+@image{08/lily-ff2f714b-4}
+@image{08/lily-ff2f714b-5}
+@image{08/lily-ff2f714b-6}
+@image{08/lily-ff2f714b-7}
+@image{08/lily-ff2f714b-8}
+@image{08/lily-ff2f714b-9}
+@image{08/lily-ff2f714b-10}
+@image{08/lily-ff2f714b-11}
+@image{08/lily-ff2f714b-12}
+@image{08/lily-ff2f714b-13}
+@image{08/lily-ff2f714b-14}
+@c eof

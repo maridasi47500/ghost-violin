@@ -1,0 +1,15 @@
+@image{ba/lily-1ab0327c-1}
+@image{ba/lily-1ab0327c-2}
+@image{ba/lily-1ab0327c-3}
+@image{ba/lily-1ab0327c-4}
+@image{ba/lily-1ab0327c-5}
+@image{ba/lily-1ab0327c-6}
+@image{ba/lily-1ab0327c-7}
+@image{ba/lily-1ab0327c-8}
+@image{ba/lily-1ab0327c-9}
+@image{ba/lily-1ab0327c-10}
+@image{ba/lily-1ab0327c-11}
+@image{ba/lily-1ab0327c-12}
+@image{ba/lily-1ab0327c-13}
+@image{ba/lily-1ab0327c-14}
+@c eof

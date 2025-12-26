@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from mapviolin import ViolinFingeringMap
+from galaxymusic import ViolinFingeringMapMusic
 #from violinmaprefactored import ViolinFingeringMap
 import subprocess
 from subprocess import run
@@ -12,6 +13,9 @@ def to_lilypond(note):
 violin_map = ViolinFingeringMap(tonic='g', scale_type='major', octaves=3)
 violin_map.build_fingering_map()
 violin_map.save_my_fingering_in_html()
+violin_map_music = ViolinFingeringMapMusic(tonic='g', scale_type='major', octaves=3)
+violin_map_music.build_fingering_map()
+violin_map_music.save_my_scales_in_one_position_in_html()
 fingering_map_violin = violin_map.get_unique_fingerings()
 
 

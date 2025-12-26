@@ -257,6 +257,15 @@ class ViolinFingeringMap:
         return self.fingering_map
     def get_unique_fingerings(self):
         return [dict(t) for t in {tuple(d.items()) for d in self.other_fingering_map}]
+    def get_unique_fingerings(self):
+        return [dict(t) for t in {tuple(d.items()) for d in self.other_fingering_map}]
+    def right_note(self, note, pos):
+        return w["note"] == note and w["position"] == pos
+    
+    def search_for_note(self, note, pos):
+        li = self.other_fingering_map
+        res = filter(self.right_note(note, pos), li)
+        return (list(res))
 
     def display_sample(self, count=20):
         print("🎻 Fingering Map (sample):")

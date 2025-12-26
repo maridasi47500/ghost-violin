@@ -1,0 +1,15 @@
+@image{bf/lily-04b01596-1}
+@image{bf/lily-04b01596-2}
+@image{bf/lily-04b01596-3}
+@image{bf/lily-04b01596-4}
+@image{bf/lily-04b01596-5}
+@image{bf/lily-04b01596-6}
+@image{bf/lily-04b01596-7}
+@image{bf/lily-04b01596-8}
+@image{bf/lily-04b01596-9}
+@image{bf/lily-04b01596-10}
+@image{bf/lily-04b01596-11}
+@image{bf/lily-04b01596-12}
+@image{bf/lily-04b01596-13}
+@image{bf/lily-04b01596-14}
+@c eof

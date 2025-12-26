@@ -1,0 +1,15 @@
+@image{d2/lily-8070890a-1}
+@image{d2/lily-8070890a-2}
+@image{d2/lily-8070890a-3}
+@image{d2/lily-8070890a-4}
+@image{d2/lily-8070890a-5}
+@image{d2/lily-8070890a-6}
+@image{d2/lily-8070890a-7}
+@image{d2/lily-8070890a-8}
+@image{d2/lily-8070890a-9}
+@image{d2/lily-8070890a-10}
+@image{d2/lily-8070890a-11}
+@image{d2/lily-8070890a-12}
+@image{d2/lily-8070890a-13}
+@image{d2/lily-8070890a-14}
+@c eof

@@ -1,0 +1,15 @@
+@image{57/lily-ccf50405-1}
+@image{57/lily-ccf50405-2}
+@image{57/lily-ccf50405-3}
+@image{57/lily-ccf50405-4}
+@image{57/lily-ccf50405-5}
+@image{57/lily-ccf50405-6}
+@image{57/lily-ccf50405-7}
+@image{57/lily-ccf50405-8}
+@image{57/lily-ccf50405-9}
+@image{57/lily-ccf50405-10}
+@image{57/lily-ccf50405-11}
+@image{57/lily-ccf50405-12}
+@image{57/lily-ccf50405-13}
+@image{57/lily-ccf50405-14}
+@c eof

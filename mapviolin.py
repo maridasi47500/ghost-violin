@@ -34,7 +34,10 @@ class ViolinFingeringMap:
         self.fingering_map = {}
         self.other_fingering_map = []
         self.current_scale = self.generate_scale(tonic, scale_type, octaves)
+
         self.current_scale_with_enharmonic = self.generate_scale(tonic, scale_type, octaves, with_enharmonic=True)
+    def get_my_scale_enharmonic_scale(self):
+        self.current_scale = self.generate_scale(self.tonic, self.scale_type, self.octaves, with_enharmonic=True)
     def get_my_scale_name(self):
         return self.tonic+" "+self.scale_type
 
@@ -60,7 +63,7 @@ class ViolinFingeringMap:
             chromatic = ['c', 'des', 'd', 'ees', 'e', 'f', 'ges', 'g', 'aes', 'a', 'bes', 'b']
             start_index = chromatic.index(tonic)
         scale_notes = []
-        octave_marks = ["", "'", "''", "'''", "''''"]
+        octave_marks = ["", "'", "''", "'''", "''''", "'''''", "''''''"]
         #de la g string a vide a la premiere note
         #increment octave marks au "g" 
         #mapviolin for lilypod
@@ -72,6 +75,7 @@ class ViolinFingeringMap:
             for step in [0] + steps:
                 
 
+                print(myoctavemark)
                 note = chromatic[idx % 12] + octave_marks[myoctavemark]
                 scale_notes.append(note)
                 if with_enharmonic is True:
@@ -83,7 +87,7 @@ class ViolinFingeringMap:
                         scale_notes.append(myenharmonic)
                     except:
                         print("enharmonic error")
-                if chromatic[idx % 12] == "b":
+                if chromatic[idx % 12] == "b" and step > 0:
                     print("B ENHARMONIC")
                     myoctavemark+=1
                 
@@ -249,6 +253,14 @@ class ViolinFingeringMap:
         with open("writescale.sh", "w") as f:
          f.write("(lilypond-book mapviolin.html -f html --output gammes)")
         rc = subprocess.Popen(["sh", "./writescale.sh"])
+    def right_note(self, w, note, pos):
+        return w["note"] == note and w["position"] == self.positions[pos]
+    
+    def search_for_note(self, note, pos): 
+        li = self.other_fingering_map
+        res = filter(lambda x: self.right_note(x, note, pos), li)
+        return (list(res))
+
 
  
 

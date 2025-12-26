@@ -1,0 +1,15 @@
+@image{a6/lily-afcffe7f-1}
+@image{a6/lily-afcffe7f-2}
+@image{a6/lily-afcffe7f-3}
+@image{a6/lily-afcffe7f-4}
+@image{a6/lily-afcffe7f-5}
+@image{a6/lily-afcffe7f-6}
+@image{a6/lily-afcffe7f-7}
+@image{a6/lily-afcffe7f-8}
+@image{a6/lily-afcffe7f-9}
+@image{a6/lily-afcffe7f-10}
+@image{a6/lily-afcffe7f-11}
+@image{a6/lily-afcffe7f-12}
+@image{a6/lily-afcffe7f-13}
+@image{a6/lily-afcffe7f-14}
+@c eof

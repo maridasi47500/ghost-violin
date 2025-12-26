@@ -1,0 +1,15 @@
+@image{d3/lily-8adaf119-1}
+@image{d3/lily-8adaf119-2}
+@image{d3/lily-8adaf119-3}
+@image{d3/lily-8adaf119-4}
+@image{d3/lily-8adaf119-5}
+@image{d3/lily-8adaf119-6}
+@image{d3/lily-8adaf119-7}
+@image{d3/lily-8adaf119-8}
+@image{d3/lily-8adaf119-9}
+@image{d3/lily-8adaf119-10}
+@image{d3/lily-8adaf119-11}
+@image{d3/lily-8adaf119-12}
+@image{d3/lily-8adaf119-13}
+@image{d3/lily-8adaf119-14}
+@c eof
