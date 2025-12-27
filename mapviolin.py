@@ -147,7 +147,7 @@ class ViolinFingeringMap:
             
             premierpasse=False 
             while note_index < len(self.note_names) and notes_assigned < 27:
-                block = self.note_names[note_index:note_index + 6]
+                block = self.note_names[note_index:note_index + 5]
                 mynumber = 0
 
                 if len(block) > 1 and block[0] in self.current_scale_with_enharmonic and notes_assigned > 1:
@@ -256,7 +256,7 @@ class ViolinFingeringMap:
     def save_my_fingering_in_html(self, count=20):
         print("🎻 Fingering Map (sample):")
         #print(list(self.get_unique_fingerings()))
-        myscore="<h1>all my fingering on all strings of the violin "+str(self.tonic)+" "+self.scale_type+" scale</h1><lilypond fragment staffsize=32>"
+        myscore="<h1>all my fingering on all strings of the violin "+str(self.tonic)+" "+self.scale_type+" scale</h1><lilypond fragment staffsize=32>\\key "+self.tonic+" \\"+self.scale_type+"\n"
         myscorenotes="<p>"
         for x in self.current_scale_with_enharmonic:
             myscorenotes+=" "  +x
