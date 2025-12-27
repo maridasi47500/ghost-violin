@@ -113,11 +113,12 @@ class ViolinFingeringMapMusic:
                                     manote=self.enharmonic_map[y.replace("4","").replace("'","")]+y.replace(y.replace("4","").replace("'",""), "")
                                     x=violin_map.search_for_note(manote, myposition)
                             except:
-                                print("erreur edtgfeqrh note;", y)
-                                print("erreur edtgfeqrh positions", self.positions[myposition])
+                                #print("erreur edtgfeqrh note;", y)
+                                #print("erreur edtgfeqrh positions", self.positions[myposition])
+                                print("")
                                 #manote=self.enharmonic_map[y.replace("4","").replace("'","")]+y.replace(y.replace("4","").replace("'",""), "")
                                 #x=violin_map.search_for_note(manote, myposition)
-                            print(x)
+                            #print(x)
                             x=x[-1]
                             #print(x, y, self.positions[myposition])
 

@@ -143,25 +143,6 @@ class ViolinFingeringMap:
                     "position": "I",
                     "finger": "0"
                 })
-            elif self.open_string is False and string in ["D","A","E"]:
-                if string == "D":
-                    newstring="G"
-                elif string == "A":
-                    newstring="D"
-                elif string == "E":
-                    newstring="A"
-                self.fingering_map[mynote] = {
-                    "string": newstring,
-                    "position": "I",
-                    "finger": "0"
-                }
-
-                self.other_fingering_map.append({
-                    "note": self.starting_notes[string],
-                    "string": newstring,
-                    "position": "I",
-                    "finger": "0"
-                })
 
             
             premierpasse=False 
@@ -281,7 +262,8 @@ class ViolinFingeringMap:
             myscorenotes+=" "  +x
         myscorenotes+="-- "
         for x in self.other_fingering_map:
-            myscore+=" "  +x["note"]+"^"+str(x["finger"])+"_\""+x["position"]+"\"_\""+x["string"]+"\"_\""+x["note"]+"\"_\""+("hey" if x["note"]  in self.current_scale_with_enharmonic else "")+"\""
+            #myscore+=" "  +x["note"]+"^"+str(x["finger"])+"_\""+x["position"]+"\"_\""+x["string"]+"\"_\""+x["note"]+"\"_\""+("hey" if x["note"]  in self.current_scale_with_enharmonic else "")+"\""
+            myscore+=" "  +x["note"]+"^"+str(x["finger"])+"_\""+x["position"]+"\"_\""+x["string"]+"\""
             if x["note"] in self.current_scale_with_enharmonic:
                 #print(self.current_scale_with_enharmonic)
                 
