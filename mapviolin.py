@@ -147,7 +147,7 @@ class ViolinFingeringMap:
             
             premierpasse=False 
             while note_index < len(self.note_names) and notes_assigned < 27:
-                block = self.note_names[note_index:note_index + 5]
+                block = self.note_names[note_index:note_index + 6]
                 mynumber = 0
 
                 if len(block) > 1 and block[0] in self.current_scale_with_enharmonic and notes_assigned > 1:
