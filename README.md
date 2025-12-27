@@ -46,10 +46,11 @@ python3 -m venv ~/path/to/venv.
 
 
 ![alt text](music1.png)
-![alt text](ghost1.png)
+
 ![alt text](music.png)
 ![alt text](heylamerpartition.png)
 ![alt text](hellothere.png)
 ![alt text](violinnote1.png)
+![alt text](ghost1.png)
 ![alt text](ghost2.png)
  - python3 -m http.server
